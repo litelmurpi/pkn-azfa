@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompter & Naskah Pembicara B — PKN</title>
+  <!-- Google Fonts: Inter and Anton -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-lime: #d3ed6b;
+      --color-indigo: #6464ff;
+      --color-dark: #0e0e0e;
+      --color-card-bg: #1c1c1e;
+      --color-offwhite: #efefef;
+      --color-pink: #db53e2;
+      --color-mint: #58ba98;
+      --color-coral: #f1584b;
+      
+      --font-body: 'Inter', sans-serif;
+      --font-display: 'Anton', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--color-dark);
+      color: var(--color-offwhite);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+
+    header {
+      background: rgba(14, 14, 14, 0.9);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .header-title-area {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .back-btn {
+      color: var(--color-lime);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      text-transform: uppercase;
+      border: 1px solid var(--color-lime);
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background: var(--color-lime);
+      color: var(--color-dark);
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--color-lime);
+    }
+
+    .controls-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .font-controls {
+      display: flex;
+      background: #2c2c2e;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .font-btn {
+      background: none;
+      border: none;
+      color: var(--color-offwhite);
+      padding: 0.5rem 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .font-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .font-btn:first-child {
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .speaker-select {
+      background: #2c2c2e;
+      color: var(--color-offwhite);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .doc-intro {
+      margin-bottom: 2rem;
+      border-left: 4px solid var(--color-lime);
+      padding-left: 1rem;
+    }
+
+    .doc-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      line-height: 1.1;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .doc-subtitle {
+      font-size: 1rem;
+      color: #aaa;
+      font-weight: 500;
+    }
+
+    .speaker-card {
+      background: var(--color-card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .speaker-card.active-filter {
+      border-left: 6px solid var(--color-lime);
+    }
+
+    .speaker-badge {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .badge-sp1 { background-color: var(--color-lime); color: var(--color-dark); }
+    .badge-sp2 { background-color: var(--color-indigo); color: var(--color-offwhite); }
+    .badge-sp3 { background-color: var(--color-pink); color: var(--color-offwhite); }
+    .badge-sp4 { background-color: var(--color-coral); color: var(--color-offwhite); }
+    .badge-sp5 { background-color: var(--color-mint); color: var(--color-dark); }
+
+    .speaker-task {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #888;
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 0.5rem;
+    }
+
+    .cue {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--color-pink);
+      background: rgba(219, 83, 226, 0.1);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .slide-cue {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--color-lime);
+      background: rgba(211, 237, 107, 0.1);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .script-text {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #e1e1e6;
+      transition: font-size 0.2s ease;
+    }
+
+    .script-text strong {
+      color: var(--color-lime);
+      font-weight: 700;
+    }
+
+    .footer-note {
+      text-align: center;
+      color: #666;
+      font-size: 0.8rem;
+      margin-top: 3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-title-area">
+      <a href="index.html" class="back-btn">← Portal</a>
+      <div class="logo">Prompter B (LPDP)</div>
+    </div>
+
+    <div class="controls-wrapper">
+      <!-- Presenter Selector -->
+      <select class="speaker-select" id="speakerSelect" aria-label="Filter Pembicara">
+        <option value="all">Semua Pembicara (Full Script)</option>
+        <option value="pembicara-1">Pembicara 1 (Intro & Konteks)</option>
+        <option value="pembicara-2">Pembicara 2 (Linimasa)</option>
+        <option value="pembicara-3">Pembicara 3 (Pilar 1 & 2)</option>
+        <option value="pembicara-4">Pembicara 4 (Pilar 3 & Dampak)</option>
+        <option value="pembicara-5">Pembicara 5 (Refleksi & Penutup)</option>
+      </select>
+
+      <!-- Font Size Adjustment -->
+      <div class="font-controls">
+        <button class="font-btn" id="fontDec" title="Perkecil teks">A-</button>
+        <button class="font-btn" id="fontInc" title="Perbesar teks">A+</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="doc-intro">
+      <h1 class="doc-title">Prompter & Naskah Kelompok B</h1>
+      <p class="doc-subtitle">Nasionalisme yang Dipaksakan: Studi Kasus LPDP (Posisi Kontra)</p>
+    </div>
+
+    <div id="prompterContent">
+      <!-- Pembicara 1 -->
+      <div class="speaker-card" data-speaker="pembicara-1">
+        <span class="speaker-badge badge-sp1">Pembicara 1</span>
+        <div class="speaker-task">Tugas: Introduksi & Konteks Kasus</div>
+        <div>
+          <span class="slide-cue">Mulai di Slide 1: Cover</span>
+        </div>
+        <p class="script-text" style="margin-top: 0.8rem;">
+          "Selamat pagi/siang rekan-rekan dan Dosen pengampu. Dalam tugas presentasi Pendidikan Kewarganegaraan ini, kelompok kami akan membedah sisi balik dari rasa bangga nasional. Kami mengambil posisi kontra untuk mengkritik narasi kebanggaan sloganistik yang sering kali menutupi kegagalan struktural negara.<br><br>
+          Kami membawakan presentasi berjudul <strong>'Nasionalisme yang Dipaksakan: Studi Kritis Kasus Alumni LPDP "Cukup Aku Saja yang WNI" dan Realitas Kegagalan Ekosistem Domestik'</strong>. Kami akan mendedah polemik kewarganegaraan yang hangat dibicarakan di masyarakat baru-baru ini."
+        </p>
+        <div style="margin-top: 1.5rem;">
+          <span class="cue">Aksi: Scroll ke Slide 2 — Konteks Kasus</span>
+        </div>
+        <p class="script-text" style="margin-top: 0.8rem;">
+          "Kita tentu ingat kegaduhan siber ketika seorang alumni penerima beasiswa LPDP berinisial DS mengunggah foto paspor Inggris anaknya yang baru lahir dengan keterangan <strong>'cukup aku saja yang WNI'</strong>. Respons publik sangat reaktif, mayoritas menyerangnya secara moral, melabelinya tidak tahu terima kasih karena kuliah dibiayai uang pajak rakyat.<br><br>
+          Namun, dari sudut pandang akademis, apakah kasus ini sesederhana 'pembangkangan moral' satu orang? Ataukah sebenarnya ini adalah lonceng alarm dari hilangnya daya saing kewarganegaraan kita? Kita harus bertanya: Mengapa seorang talenta terbaik yang dididik tinggi memilih mengamankan kewarganegaraan asing untuk keturunannya?<br><br>
+          Analisis kronologis dari polemik ini akan dibahas oleh rekan saya."
+        </p>
+      </div>
+
+      <!-- Pembicara 2 -->
+      <div class="speaker-card" data-speaker="pembicara-2">
+        <span class="speaker-badge badge-sp2">Pembicara 2</span>
+        <div class="speaker-task">Tugas: Linimasa & Siklus Tanggapan</div>
+        <div>
+          <span class="slide-cue">Mulai di Slide 3: Linimasa</span>
+        </div>
+        <p class="script-text" style="margin-top: 0.8rem;">
+          "Terima kasih Pembicara 1. Rekan-rekan sekalian, marilah kita lihat realitas siklus beasiswa negara kita. Perjalanan hilangnya talenta ini terbagi menjadi tiga fase.<br><br>
+          Pertama, fase <strong>Pendanaan Triliunan</strong>. Dana abadi pendidikan LPDP dikelola hingga ratusan triliun rupiah untuk membiayai studi pemuda ke kampus-kampus terbaik di dunia. Ini adalah ambisi investasi besar di atas kertas.<br><br>
+          Kedua, fase <strong>Benturan Realitas</strong>. Ketika para lulusan luar negeri ini kembali, mereka membentur tembok birokrasi domestik yang kaku, iklim riset yang tidak dihargai (seperti polemik pemangkasan dana riset), dan standar upah yang sangat minim dibanding keahlian tingkat lanjut mereka. Ada jurang pemisah antara ilmu yang didapat di luar negeri dan kesiapan industri dalam negeri.<br><br>
+          Ketiga, fase <strong>Pelepasan Kewarganegaraan</strong>. Talenta mengambil langkah rasional mengamankan paspor asing untuk keluarganya demi stabilitas masa depan, yang kemudian direspons publik dengan kemarahan moral di media sosial. Kemarahan ini bertindak bagai tabir asap yang menutupi ketidakmampuan ekosistem domestik untuk memanusiakan keahlian mereka.<br><br>
+          De dekonstruksi kritik sosiologis ini akan dilanjutkan oleh pembicara ketiga."
+        </p>
+      </div>
+
+      <!-- Pembicara 3 -->
+      <div class="speaker-card" data-speaker="pembicara-3">
+        <span class="speaker-badge badge-sp3">Pembicara 3</span>
+        <div class="speaker-task">Tugas: Dekonstruksi Pilar 1 & 2</div>
+        <div>
+          <span class="slide-cue">Mulai di Slide 4: Tiga Pilar (Pilar 1 & 2)</span>
+        </div>
+        <p class="script-text" style="margin-top: 0.8rem;">
+          "Terima kasih Pembicara 2. Kelompok kami merumuskan tiga pilar utama yang membongkar ilusi kebanggaan nasional dalam kasus ini. Saya akan membedah dua pilar pertama.<br><br>
+          Pilar pertama adalah <strong>Nasionalisme Timbal Balik (Reciprocal Nationalism)</strong>. Nasionalisme modern tidak bisa dituntut secara sepihak dan doktriner. Hubungan warga negara dan negara adalah ikatan timbal balik. Warga memberikan loyalitas dan rasa bangga, sementara negara wajib menjamin kesejahteraan dasar, jaminan hidup, dan kemudahan mobilitas global. Memaksakan rasa bangga tanpa diiringi perbaikan kualitas hidup adalah bentuk tuntutan yang tidak realistis.<br><br>
+          Pilar kedua adalah <strong>Absorpsi Ekosistem Rendah</strong>. Ini kritik langsung untuk pemerintah. Negara sangat bersemangat membiayai pendidikan luar negeri yang mahal, namun abai membangun ekosistem riset dan wadah industri yang mapan di dalam negeri untuk menyerap keahlian mereka. Hasilnya adalah inefisiensi anggaran raksasa: kita menyekolahkan mereka tinggi-tinggi, tapi saat pulang kita biarkan potensi mereka mati karena ketiadaan wadah kerja yang relevan.<br><br>
+          Pilar berikutnya akan dipaparkan oleh rekan saya."
+        </p>
+      </div>
+
+      <!-- Pembicara 4 -->
+      <div class="speaker-card" data-speaker="pembicara-4">
+        <span class="speaker-badge badge-sp4">Pembicara 4</span>
+        <div class="speaker-task">Tugas: Pilar 3 & Dampak Struktural</div>
+        <div>
+          <span class="slide-cue">Mulai di Slide 4: Tiga Pilar (Pilar 3 & 4)</span>
+        </div>
+        <p class="script-text" style="margin-top: 0.8rem;">
+          "Terima kasih Pembicara 3. Saya akan melanjutkan ke pilar ketiga, yaitu <strong>Teori Pilihan Rasional (Rational Choice Theory)</strong> dalam kewarganegaraan. Di era global, kewarganegaraan bukan lagi ikatan mistik emosional semata, melainkan instrumen kualitas hidup. <br><br>
+          Paspor Inggris memberikan bebas visa ke 190 lebih negara (memudahkan mobilitas karir global) dan akses layanan kesehatan NHS yang andal. Dibandingkan dengan paspor Indonesia yang mobilitasnya terpasung di kancah internasional, memilih masa depan terbaik bagi anak adalah naluri alami orang tua. Mengutuk pilihan rasional ini dengan dalih moralitas siber menunjukkan ketidakmampuan kita bersaing secara objektif."
+        </p>
+        <div style="margin-top: 1.5rem;">
+          <span class="cue">Aksi: Scroll ke Slide 5 — Dampak Struktural</span>
+        </div>
+        <p class="script-text" style="margin-top: 0.8rem;">
+          "Dampak strukturalnya sangat nyata bagi bangsa kita. Pertama, terjadi <strong>Brain Drain Permanen</strong> karena talenta terbaik terpaksa menetap di luar negeri agar keahlian mereka dihargai secara layak. <br><br>
+          Kedua, hal ini melestarikan <strong>Jebakan Padat Karya Berupah Murah</strong>. Tanpa kontribusi talenta canggih di ekosistem lokal, industri kita tidak akan pernah naik kelas menuju ekonomi pengetahuan (knowledge economy). Kita akan terus terjebak sebagai negara penyedia tenaga kerja murah tanpa inovasi teknologi mandiri.<br><br>
+          Ketiga, kita memelihara <strong>nasionalisme defensif yang rapuh</strong>—di mana kita mudah tersinggung ketika kenyataan tentang daya saing bangsa kita diungkap ke permukaan.<br><br>
+          Refleksi akhir kelompok akan dipaparkan oleh pembicara kelima."
+        </p>
+      </div>
+
+      <!-- Pembicara 5 -->
+      <div class="speaker-card" data-speaker="pembicara-5">
+        <span class="speaker-badge badge-sp5">Pembicara 5</span>
+        <div class="speaker-task">Tugas: Refleksi Diri & Penutup</div>
+        <div>
+          <span class="slide-cue">Mulai di Slide 6: Refleksi Diri</span>
+        </div>
+        <p class="script-text" style="margin-top: 0.8rem;">
+          "Terima kasih Pembicara 4. Kini kita masuk ke pertanyaan utama: <strong>Apakah Anda bangga menjadi Warga Negara Indonesia?</strong><br><br>
+          Jawaban analitis kelompok kami: <strong>Belum sepenuhnya, dan menyuarakan kejujuran kritis ini adalah bentuk kepedulian kami sebagai akademisi.</strong><br><br>
+          Rasa bangga yang sejati tidak bisa ditagih melalui pemaksaan moral di media sosial atau sekadar tanda tangan kontrak. Selama negara gagal melindungi hak profesional talenta terbaiknya, selama paspor kita masih lemah di kancah global, dan selama kita membiarkan birokrasi memadamkan hasrat riset anak bangsa—maka memaksakan kebanggaan adalah sebuah ketidakjujuran intelektual."
+        </p>
+        <div style="margin-top: 1.5rem;">
+          <span class="cue">Aksi: Scroll ke Slide 7 — Penutup</span>
+        </div>
+        <p class="script-text" style="margin-top: 0.8rem;">
+          "Sebagai kesimpulan penutup presentasi kami:<br>
+          Kebanggaan nasional tidak boleh hanya berupa slogan kosmetik tanpa isi. Bangga itu harus ditumbuhkan secara organik melalui kehadiran nyata negara: perbaikan mutu sosial, penguatan mobilitas paspor, dan penciptaan lapangan kerja berkelas global.<br><br>
+          Mari kita ubah nasionalisme sloganistik menjadi komitmen perbaikan ekosistem struktural bangsa.<br><br>
+          Sekian presentasi dari kelompok kami. Terima kasih atas perhatiannya, mari kita buka sesi diskusi."
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      TUGAS PKN - UNIVERSITAS AMIKOM YOGYAKARTA
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const speakerSelect = document.getElementById('speakerSelect');
+      const cards = document.querySelectorAll('.speaker-card');
+      const fontDec = document.getElementById('fontDec');
+      const fontInc = document.getElementById('fontInc');
+      const scriptTexts = document.querySelectorAll('.script-text');
+
+      // Filter Pembicara
+      speakerSelect.addEventListener('change', (e) => {
+        const val = e.target.value;
+        cards.forEach(card => {
+          if (val === 'all') {
+            card.style.display = 'block';
+            card.classList.remove('active-filter');
+          } else {
+            if (card.getAttribute('data-speaker') === val) {
+              card.style.display = 'block';
+              card.classList.add('active-filter');
+              card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+              card.style.display = 'none';
+              card.classList.remove('active-filter');
+            }
+          }
+        });
+      });
+
+      // Kontrol Ukuran Font
+      let currentSize = 1.2; // default in rem
+      fontInc.addEventListener('click', () => {
+        if (currentSize < 2.0) {
+          currentSize += 0.1;
+          scriptTexts.forEach(el => el.style.fontSize = `${currentSize}rem`);
+        }
+      });
+
+      fontDec.addEventListener('click', () => {
+        if (currentSize > 0.9) {
+          currentSize -= 0.1;
+          scriptTexts.forEach(el => el.style.fontSize = `${currentSize}rem`);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

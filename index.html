@@ -52,8 +52,8 @@
       width: 100%;
       height: 100%;
       background-image: 
-        radial-gradient(circle at 20% 30%, rgba(100, 100, 255, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(211, 237, 107, 0.08) 0%, transparent 40%);
+        radial-gradient(circle at 10% 20%, rgba(100, 100, 255, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(211, 237, 107, 0.08) 0%, transparent 40%);
       pointer-events: none;
       z-index: 0;
     }
@@ -73,7 +73,7 @@
 
     header {
       text-align: center;
-      margin-bottom: 4rem;
+      margin-bottom: 3.5rem;
     }
 
     .badge {
@@ -110,7 +110,7 @@
     .subtitle {
       font-size: clamp(1rem, 2vw, 1.25rem);
       color: #888;
-      max-width: 650px;
+      max-width: 700px;
       margin: 0 auto;
       line-height: 1.5;
     }
@@ -118,11 +118,11 @@
     .grid-portal {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 2rem;
-      margin-bottom: 4rem;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 850px) {
       .grid-portal {
         grid-template-columns: 1fr 1fr;
       }
@@ -131,15 +131,13 @@
     .card {
       background: var(--color-card-bg);
       border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
+      border-radius: 24px;
       padding: 2.5rem;
-      text-decoration: none;
-      color: var(--color-offwhite);
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      height: 320px;
+      min-height: 380px;
       position: relative;
       overflow: hidden;
     }
@@ -152,24 +150,24 @@
       width: 100%;
       height: 100%;
       background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, transparent 100%);
-      transition: opacity 0.4s ease;
+      pointer-events: none;
     }
 
     .card-num {
       font-family: var(--font-display);
       font-size: 1.5rem;
-      color: rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.12);
       letter-spacing: 0.05em;
     }
 
     .card-title {
       font-family: var(--font-display);
-      font-size: 2.5rem;
+      font-size: 2.3rem;
       text-transform: uppercase;
-      line-height: 1;
-      margin-top: 2rem;
+      line-height: 1.05;
+      margin-top: 1.5rem;
       margin-bottom: 0.75rem;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
       transition: color 0.3s ease;
     }
 
@@ -181,53 +179,100 @@
       flex-grow: 1;
     }
 
-    .card-action {
+    /* Card buttons action layout */
+    .card-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      width: 100%;
+      z-index: 2;
+    }
+
+    @media (min-width: 480px) {
+      .card-buttons {
+        flex-direction: row;
+      }
+    }
+
+    .btn {
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
       font-size: 0.85rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      display: flex;
+      letter-spacing: 0.08em;
+      padding: 0.9rem 1.2rem;
+      border-radius: 8px;
+      display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.5rem;
-      transition: transform 0.3s ease;
+      transition: all 0.3s ease;
+      cursor: pointer;
     }
 
-    .card-action svg {
+    .btn svg {
       width: 16px;
       height: 16px;
       fill: currentColor;
-      transition: transform 0.3s ease;
+      transition: transform 0.2s ease;
     }
 
-    /* Individual Card Hover Effects */
-    .card-presentation:hover {
+    .btn:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* Kasus A Styles */
+    .card-a {
+      border-top: 4px solid var(--color-lime);
+    }
+    .card-a:hover {
+      box-shadow: 0 12px 40px rgba(211, 237, 107, 0.05);
       border-color: var(--color-lime);
-      box-shadow: 0 10px 40px rgba(211, 237, 107, 0.08);
-      transform: translateY(-5px);
     }
-    .card-presentation:hover .card-title {
+    .btn-slide-a {
+      background-color: var(--color-lime);
+      color: var(--color-dark);
+    }
+    .btn-slide-a:hover {
+      background-color: #c0d95b;
+      box-shadow: 0 4px 15px rgba(211, 237, 107, 0.2);
+    }
+    .btn-prompter-a {
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--color-offwhite);
+    }
+    .btn-prompter-a:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: var(--color-lime);
       color: var(--color-lime);
-    }
-    .card-presentation:hover .card-action {
-      color: var(--color-lime);
-    }
-    .card-presentation:hover .card-action svg {
-      transform: translateX(5px);
     }
 
-    .card-prompter:hover {
+    /* Kasus B Styles */
+    .card-b {
+      border-top: 4px solid var(--color-indigo);
+    }
+    .card-b:hover {
+      box-shadow: 0 12px 40px rgba(100, 100, 255, 0.08);
       border-color: var(--color-indigo);
-      box-shadow: 0 10px 40px rgba(100, 100, 255, 0.1);
-      transform: translateY(-5px);
     }
-    .card-prompter:hover .card-title {
+    .btn-slide-b {
+      background-color: var(--color-indigo);
+      color: var(--color-offwhite);
+    }
+    .btn-slide-b:hover {
+      background-color: #5252db;
+      box-shadow: 0 4px 15px rgba(100, 100, 255, 0.3);
+    }
+    .btn-prompter-b {
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--color-offwhite);
+    }
+    .btn-prompter-b:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: var(--color-indigo);
       color: var(--color-indigo);
-    }
-    .card-prompter:hover .card-action {
-      color: var(--color-indigo);
-    }
-    .card-prompter:hover .card-action svg {
-      transform: translateX(5px);
     }
 
     /* Floating stamp decorator */
@@ -235,20 +280,16 @@
       position: absolute;
       right: 1.5rem;
       top: 1.5rem;
-      width: 70px;
-      height: 70px;
-      opacity: 0.15;
+      width: 65px;
+      height: 65px;
+      opacity: 0.08;
       pointer-events: none;
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
-    .card-presentation:hover .floating-stamp {
-      opacity: 0.6;
-      transform: rotate(45deg);
-    }
-    .card-prompter:hover .floating-stamp {
-      opacity: 0.6;
-      transform: scale(1.1);
+    .card:hover .floating-stamp {
+      opacity: 0.25;
+      transform: scale(1.1) rotate(10deg);
     }
 
     footer {
@@ -273,50 +314,62 @@
 
   <div class="container">
     <header>
-      <div class="badge">UTS Kewarganegaraan</div>
+      <div class="badge">Presentasi PKN Kelompok</div>
       <h1>
         <span class="lime-highlight">Paradoks</span><br>
         <span class="outline">Nasionalisme</span>
       </h1>
       <p class="subtitle">
-        Dashboard navigasi presentasi kritis posisi kontra terkait topik "Rasa Bangga terhadap Negara Indonesia" berlatar studi kasus industri kreatif lokal.
+        Pilih salah satu dari dua studi kasus analitis (posisi kontra) di bawah ini untuk membuka halaman slide presentasi atau prompter naskah bicara.
       </p>
     </header>
 
     <div class="grid-portal">
-      <!-- Card 1: Slide Deck -->
-      <a href="presentation.html" class="card card-presentation">
-        <!-- Butterfly / Presentation Icon -->
+      <!-- KASUS A: Game Indie Mojiken -->
+      <div class="card card-a">
+        <!-- Game controller/Butterfly representation -->
         <svg class="floating-stamp" viewBox="0 0 24 24" fill="var(--color-lime)">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5c0 .8-.7 1.5-1.5 1.5s-1.5-.7-1.5-1.5.7-1.5 1.5-1.5 1.5.7 1.5 1.5zm-1-4.5c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5 1.5.7 1.5 1.5-.7 1.5-1.5 1.5z"/>
+          <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
         </svg>
-        <span class="card-num">01 / SCREEN</span>
+        <span class="card-num">KASUS A / DIGITAL ART</span>
         <div>
-          <h2 class="card-title">Mulai Slide</h2>
-          <p class="card-desc">Buka slide presentasi web-based interaktif dengan scroll-snap snapping dan visual premium ala Good Secrets.</p>
+          <h2 class="card-title">Game Indie & Overproud</h2>
+          <p class="card-desc">Mengkritik "Jebakan Validasi Internasional" siber netizen atas kesuksesan game lokal, yang kontradiktif dengan maraknya pembajakan di dalam negeri.</p>
         </div>
-        <div class="card-action">
-          <span>Buka Presentasi</span>
-          <svg viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42L16.86 11H5v2z"/></svg>
+        <div class="card-buttons">
+          <a href="presentation_a.html" class="btn btn-slide-a">
+            <span>Mulai Slide</span>
+            <svg viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42L16.86 11H5v2z"/></svg>
+          </a>
+          <a href="prompter_a.html" class="btn btn-prompter-a">
+            <span>Buka Naskah</span>
+            <svg viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42L16.86 11H5v2z"/></svg>
+          </a>
         </div>
-      </a>
+      </div>
 
-      <!-- Card 2: Prompter -->
-      <a href="prompter.html" class="card card-prompter">
-        <!-- Mic / Prompter Icon -->
+      <!-- KASUS B: Beasiswa LPDP -->
+      <div class="card card-b">
+        <!-- Passport / Document representation -->
         <svg class="floating-stamp" viewBox="0 0 24 24" fill="var(--color-indigo)">
-          <path d="M12 2A3 3 0 0 0 9 5v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3zm7 9a1 1 0 0 1-2 0 5 5 0 0 1-10 0 1 1 0 0 1-2 0 7 7 0 0 0 6 6.93V21h-3a1 1 0 0 0 0 2h8a1 1 0 0 0 0-2h-3v-3.07A7 7 0 0 0 19 11z"/>
+          <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 4h2v5l-1-.75L9 9V4zm9 16H6V4h3v5c0 .55.45 1 1 1h4c.55 0 1-.45 1-1V4h3v16zm-3-6H9v-2h6v2zm0-3H9V9h6v2z"/>
         </svg>
-        <span class="card-num">02 / SCRIPT</span>
+        <span class="card-num">KASUS B / SOSIAL-POLITIK</span>
         <div>
-          <h2 class="card-title">Naskah Bicara</h2>
-          <p class="card-desc">Buka prompter pembicara yang mobile-friendly dengan filter naskah per pembicara (1 s.d 5) dan pengontrol ukuran teks.</p>
+          <h2 class="card-title">Polemik LPDP & Paspor</h2>
+          <p class="card-desc">Mengulas hilangnya kebanggaan WNI pada kasus alumni LPDP "Cukup Aku Saja yang WNI" sebagai kegagalan sistemik ekosistem kerja domestik.</p>
         </div>
-        <div class="card-action">
-          <span>Buka Prompter</span>
-          <svg viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42L16.86 11H5v2z"/></svg>
+        <div class="card-buttons">
+          <a href="presentation_b.html" class="btn btn-slide-b">
+            <span>Mulai Slide</span>
+            <svg viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42L16.86 11H5v2z"/></svg>
+          </a>
+          <a href="prompter_b.html" class="btn btn-prompter-b">
+            <span>Buka Naskah</span>
+            <svg viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42L16.86 11H5v2z"/></svg>
+          </a>
         </div>
-      </a>
+      </div>
     </div>
   </div>
 
