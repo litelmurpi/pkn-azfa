@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompter & Naskah Pembicara — PKN</title>
+  <!-- Google Fonts: Inter and Anton -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-lime: #d3ed6b;
+      --color-indigo: #6464ff;
+      --color-dark: #0e0e0e;
+      --color-card-bg: #1c1c1e;
+      --color-offwhite: #efefef;
+      --color-pink: #db53e2;
+      --color-mint: #58ba98;
+      --color-coral: #f1584b;
+      
+      --font-body: 'Inter', sans-serif;
+      --font-display: 'Anton', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--color-dark);
+      color: var(--color-offwhite);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+
+    header {
+      background: rgba(14, 14, 14, 0.9);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .header-title-area {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .back-btn {
+      color: var(--color-lime);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      text-transform: uppercase;
+      border: 1px solid var(--color-lime);
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background: var(--color-lime);
+      color: var(--color-dark);
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--color-lime);
+    }
+
+    .controls-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .font-controls {
+      display: flex;
+      background: #2c2c2e;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .font-btn {
+      background: none;
+      border: none;
+      color: var(--color-offwhite);
+      padding: 0.5rem 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .font-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .font-btn:first-child {
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .speaker-select {
+      background: #2c2c2e;
+      color: var(--color-offwhite);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .doc-intro {
+      margin-bottom: 2rem;
+      border-left: 4px solid var(--color-lime);
+      padding-left: 1rem;
+    }
+
+    .doc-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      line-height: 1.1;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .doc-subtitle {
+      font-size: 1rem;
+      color: #aaa;
+      font-weight: 500;
+    }
+
+    .speaker-card {
+      background: var(--color-card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .speaker-card.active-filter {
+      border-left: 6px solid var(--color-lime);
+    }
+
+    .speaker-card.highlight {
+      border-color: var(--color-lime);
+      box-shadow: 0 0 15px rgba(211, 237, 107, 0.1);
+    }
+
+    .speaker-badge {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .badge-sp1 { background-color: var(--color-lime); color: var(--color-dark); }
+    .badge-sp2 { background-color: var(--color-indigo); color: var(--color-offwhite); }
+    .badge-sp3 { background-color: var(--color-pink); color: var(--color-offwhite); }
+    .badge-sp4 { background-color: var(--color-coral); color: var(--color-offwhite); }
+    .badge-sp5 { background-color: var(--color-mint); color: var(--color-dark); }
+
+    .speaker-task {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #888;
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 0.5rem;
+    }
+
+    .cue {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--color-pink);
+      background: rgba(219, 83, 226, 0.1);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .slide-cue {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--color-lime);
+      background: rgba(211, 237, 107, 0.1);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .script-text {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #e1e1e6;
+      transition: font-size 0.2s ease;
+    }
+
+    .script-text strong {
+      color: var(--color-lime);
+      font-weight: 700;
+    }
+
+    .footer-note {
+      text-align: center;
+      color: #666;
+      font-size: 0.8rem;
+      margin-top: 3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-title-area">
+      <a href="index.html" class="back-btn">← Portal</a>
+      <div class="logo">Prompter Pembicara</div>
+    </div>
+
+    <div class="controls-wrapper">
+      <!-- Presenter Selector -->
+      <select class="speaker-select" id="speakerSelect" aria-label="Filter Pembicara">
+        <option value="all">Semua Pembicara (Full Script)</option>
+        <option value="pembicara-1">Pembicara 1 (Intro & Kasus)</option>
+        <option value="pembicara-2">Pembicara 2 (Linimasa)</option>
+        <option value="pembicara-3">Pembicara 3 (Pilar 1 & 2)</option>
+        <option value="pembicara-4">Pembicara 4 (Pilar 3 & Dampak)</option>
+        <option value="pembicara-5">Pembicara 5 (Refleksi & Penutup)</option>
+      </select>
+
+      <!-- Font Size Adjustment -->
+      <div class="font-controls">
+        <button class="font-btn" id="fontDec" title="Perkecil teks">A-</button>
+        <button class="font-btn" id="fontInc" title="Perbesar teks">A+</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="doc-intro">
+      <h1 class="doc-title">Prompter & Naskah Kelompok</h1>
+      <p class="doc-subtitle">Paradoks Nasionalisme Reaktif - PKN (Posisi Kontra)</p>
+    </div>
+
+    <div id="prompterContent">
+      <!-- Pembicara 1 -->
+      <div class="speaker-card" data-speaker="pembicara-1">
+        <span class="speaker-badge badge-sp1">Pembicara 1</span>
+        <div class="speaker-task">Tugas: Introduksi & Konteks Kasus</div>
+        <div>
+          <span class="slide-cue">Mulai di Slide 1: Cover</span>
+        </div>
+        <p class="script-text" style="margin-top: 0.8rem;">
+          "Selamat pagi/siang rekan-rekan dan Dosen pengampu. Hari ini kelompok kami tidak akan membawakan presentasi yang memanjakan telinga kita dengan pujian-pujian kosong tentang kebesaran bangsa. Sebaliknya, kami mengambil posisi kontra untuk menguji sejauh mana kebenaran dari rasa bangga nasional kita. <br><br>
+          Kami mengangkat judul <strong>'Paradoks Nasionalisme Reaktif: Studi Kritis Atas Fenomena International Validation Trap dan Sindrom Overproud pada Industri Kreatif Indonesia'</strong>. Sebagai studi kasus utama, kami akan membedah fenomena kesuksesan game indie lokal berlevel global, 'A Space for the Unbound', yang dirilis pada tahun 2023."
+        </p>
+        <div style="margin-top: 1.5rem;">
+          <span class="cue">Aksi: Scroll ke Slide 2 — Konteks Kasus</span>
+        </div>
+        <p class="script-text" style="margin-top: 0.8rem;">
+          "Mari kita lihat kenyataan di lapangan. Ketika game indie premium buatan Mojiken Studio asal Surabaya dan penerbit Toge Productions berhasil menembus nominasi bergengsi di ajang internasional seperti Tokyo Game Show dan The Game Awards di Amerika Serikat, reaksi publik kita sangat seragam. Ruang siber kita mendadak bising oleh tagar <strong>#IndonesiaPride</strong>. Netizen merasa ikut memiliki kesuksesan tersebut.<br><br>
+          Namun, sosiologi modern mencatat adanya pergeseran nasionalisme digital—sebuah nasionalisme siber yang reaktif dan emosional. Pertanyaan kritisnya adalah: Apakah banjir tagar kebanggaan tersebut berbanding lurus dengan dukungan riil di dunia nyata? Ataukah nasionalisme ini hanya sekadar kosmetik digital untuk menutupi rasa minder kolektif kita?<br><br>
+          Analisis atas siklus respon publik ini akan dilanjutkan oleh rekan saya."
+        </p>
+      </div>
+
+      <!-- Pembicara 2 -->
+      <div class="speaker-card" data-speaker="pembicara-2">
+        <span class="speaker-badge badge-sp2">Pembicara 2</span>
+        <div class="speaker-task">Tugas: Perjalanan Karya & Siklus Respon</div>
+        <div>
+          <span class="slide-cue">Mulai di Slide 3: Linimasa</span>
+        </div>
+        <p class="script-text" style="margin-top: 0.8rem;">
+          "Terima kasih Pembicara 1. Rekan-rekan sekalian, mari kita bedah proses di balik layar. Jika kita runtut linimasanya, kesuksesan ini terbagi menjadi tiga fase utama yang memperlihatkan ketimpangan dukungan kita.<br><br>
+          Pertama, fase <strong>Inkubasi Mandiri antara 2015 hingga 2022</strong>. Di masa-masa sulit ini, saat studio lokal berdarah-darah melakukan bootstrap, mencari pendanaan ke sana kemari, apresiasi dan pasar domestik hampir-hampir tidak melirik mereka. Tidak ada eksposur media besar, apalagi suntikan dana modal dari lembaga keuangan nasional. Kreator dipaksa mencari penerbit dan pendanaan dari entitas asing agar proyek mereka tidak mati di tengah jalan.<br><br>
+          Kedua, fase <strong>Validasi Asing di awal tahun 2023</strong>. Begitu game ini diakui secara global dan dipuji oleh kurator internasional, publik Indonesia baru tersadar. Tiba-tiba saja media sosial riuh dengan klaim prestasi anak bangsa. Ini pola yang sangat menyedihkan: kita baru bangga setelah pihak asing memberi stempel persetujuan.<br><br>
+          Ketiga, fase <strong>Pencaplokan Narasi Pasca-Viral</strong>. Ketika karya tersebut sukses besar di kancah internasional tanpa bantuan struktural apa pun dari kita, instansi formal pemerintah dan netizen secara sepihak mengklaimnya sebagai simbol 'kebanggaan bangsa'. Ini adalah perilaku parasit sosiologis, di mana kesuksesan individu yang berjuang mandiri diklaim sebagai buah dari iklim pembinaan nasional yang sehat.<br><br>
+          Detail dari paradoks kebanggaan ini akan dikuliti lebih dalam oleh rekan saya selanjutnya."
+        </p>
+      </div>
+
+      <!-- Pembicara 3 -->
+      <div class="speaker-card" data-speaker="pembicara-3">
+        <span class="speaker-badge badge-sp3">Pembicara 3</span>
+        <div class="speaker-task">Tugas: Dekonstruksi Pilar 1 & 2</div>
+        <div>
+          <span class="slide-cue">Mulai di Slide 4: Tiga Pilar (Pilar 1 & 2)</span>
+        </div>
+        <p class="script-text" style="margin-top: 0.8rem;">
+          "Terima kasih Pembicara 2. Dari fenomena di atas, kelompok kami merumuskan tiga pilar utama yang mendelegitimasi rasa bangga nasional tersebut. Saya akan membedah dua pilar pertama.<br><br>
+          Pilar pertama adalah <strong>The International Validation Trap</strong> atau Jebakan Validasi Internasional. Ini adalah gejala inferioritas akut, di mana harga diri sebuah karya nasional diletakkan pada penilaian mata asing. Sebelum media Barat atau juri Jepang bertepuk tangan, pasar domestik menganggap sebelah mata produk premium lokal. Kebanggaan kita ternyata tidak otonom; ia disetir oleh selera global. Jika dunia tidak melirik, kita membiarkan karya anak bangsa mati sunyi.<br><br>
+          Pilar kedua yang jauh lebih ironis adalah <strong>Sindrom Overproud vs Realitas Pembajakan</strong>. Netizen kita sangat garang dan agresif menyerbu kolom komentar internasional demi melampiaskan ego nasionalisme mereka. Namun, ketika tiba saatnya memberikan kontribusi ekonomi nyata dengan membeli game tersebut secara legal seharga kurang dari 200 ribu rupiah di Steam, mayoritas dari mereka mundur.<br><br>
+          Data menunjukkan maraknya pencarian kata kunci 'crack' atau versi bajakan untuk game ini di forum lokal. Mereka bangga memamerkan identitas ke-Indonesiaan di internet, namun menolak mengeluarkan uang sepeser pun untuk menghargai hak kekayaan intelektual (HAKI) kreatornya. Rasa bangga mereka hanya sebatas kuota internet, bukan apresiasi konkret.<br><br>
+          Dua pilar berikutnya akan dipaparkan oleh rekan saya."
+        </p>
+      </div>
+
+      <!-- Pembicara 4 -->
+      <div class="speaker-card" data-speaker="pembicara-4">
+        <span class="speaker-badge badge-sp4">Pembicara 4</span>
+        <div class="speaker-task">Tugas: Pilar 3 & Dampak Struktural</div>
+        <div>
+          <span class="slide-cue">Mulai di Slide 4: Tiga Pilar (Pilar 3 & 4)</span>
+        </div>
+        <p class="script-text" style="margin-top: 0.8rem;">
+          "Terima kasih Pembicara 3. Saya akan melanjutkan ke pilar ketiga, yaitu <strong>Pencaplokan Narasi</strong> yang bertindak sebagai parasit atas perjuangan mandiri. Sangatlah tidak adil apabila sebuah negara atau kelompok masyarakat mengklaim kesuksesan sebuah karya sebagai keberhasilan kolektif, ketika pada masa-masa kritis inkubasi, mitigasi risiko keuangan sepenuhnya ditanggung sendiri oleh sang kreator bersama publisher asingnya. Klaim kebanggaan ini adalah bentuk pelarian tanggung jawab regulasi.<br><br>
+          Faktanya, data ekonomi menunjukkan bahwa pasar domestik menyumbang persentase pendapatan yang sangat kecil bagi game premium lokal kita. Penghasilan utama Mojiken dan Toge justru datang dari pasar Tiongkok, Amerika Serikat, dan Eropa."
+        </p>
+        <div style="margin-top: 1.5rem;">
+          <span class="cue">Aksi: Scroll ke Slide 5 — Dampak Struktural</span>
+        </div>
+        <p class="script-text" style="margin-top: 0.8rem;">
+          "Implikasi dari rasa bangga semu ini berdampak sangat buruk secara struktural bagi talenta nasional kita.<br><br>
+          Pertama, terjadi <strong>Normalisasi Eksploitasi Talenta</strong>. Kreator dituntut secara moral atas nama nasionalisme untuk mengharumkan nama bangsa. Namun, saat mereka membutuhkan kepastian insentif fiskal, perlindungan kerja, atau regulasi HAKI yang tegas, negara dan publik absen.<br><br>
+          Kedua, meluasnya fenomena <strong>Brain Drain Digital</strong>. Karena pasar lokal tidak menghargai karya premium secara finansial, talenta-talenta terbaik kita di bidang pemrograman, desain, dan seni memilih untuk 'bermigrasi secara digital'. Mereka bekerja penuh waktu untuk studio luar negeri demi gaji berstandar internasional yang layak, alih-alih membuat kekayaan intelektual atas nama Indonesia.<br><br>
+          Ketiga, <strong>Kerapuhan Identitas Nasional</strong>. Karena rasa bangga ini hanya didasarkan pada tren viral yang instan, sentimen ini sangat mudah menguap. Ketika ada isu domestik yang negatif, rasa bangga itu langsung jatuh bebas menjadi pesimisme akut atau self-loathing.<br><br>
+          Bagian refleksi dan kesimpulan akhir akan dibawakan oleh pembicara kelima."
+        </p>
+      </div>
+
+      <!-- Pembicara 5 -->
+      <div class="speaker-card" data-speaker="pembicara-5">
+        <span class="speaker-badge badge-sp5">Pembicara 5</span>
+        <div class="speaker-task">Tugas: Refleksi Diri & Penutup</div>
+        <div>
+          <span class="slide-cue">Mulai di Slide 6: Refleksi Diri</span>
+        </div>
+        <p class="script-text" style="margin-top: 0.8rem;">
+          "Terima kasih Pembicara 4. Kini kita sampai pada pertanyaan inti dari tugas Pendidikan Kewarganegaraan ini: <strong>Apakah Anda bangga menjadi Warga Negara Indonesia?</strong><br><br>
+          Posisi kelompok kami sangat jelas secara akademis: <strong>Belum sepenuhnya, dan kejujuran kritis ini sangat penting untuk kami suarakan.</strong><br><br>
+          Sebagai mahasiswa yang dididik untuk berpikir kritis, kami menolak bangga secara membabi buta. Menolak bangga bukan berarti tidak peduli—justru sebaliknya. Kami peduli pada masa depan industri kreatif dan talenta bangsa ini. Selama kita masih bangga pada karya anak bangsa hanya sebatas kata-kata di media sosial, namun di saat yang sama membiarkan ekosistem mereka mati perlahan karena kebiasaan membajak dan ketidakmampuan pasar domestik untuk mengapresiasi karya secara legal, kebanggaan itu hanyalah topeng kepalsuan."
+        </p>
+        <div style="margin-top: 1.5rem;">
+          <span class="cue">Aksi: Scroll ke Slide 7 — Penutup</span>
+        </div>
+        <p class="script-text" style="margin-top: 0.8rem;">
+          "Sebagai kesimpulan penutup presentasi kami:<br>
+          Rasa bangga yang sejati tidak menanti ketukan palu juri internasional ataupun pujian asing. Kebanggaan itu harus dimulai secara mandiri dari ruang kelas kita, kebijakan fiskal negara yang protektif terhadap industri kreatif, dan yang terpenting, dari kerelaan dompet konsumen domestik untuk membeli karya orisinal lokal.<br><br>
+          Mari kita ubah nasionalisme digital kita yang reaktif menjadi apresiasi ekonomi yang aktif dan nyata.<br><br>
+          Sekian presentasi dari kelompok kami. Terima kasih atas perhatiannya, kami buka sesi diskusi dan tanya jawab."
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      TUGAS PKN - UNIVERSITAS AMIKOM YOGYAKARTA
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const speakerSelect = document.getElementById('speakerSelect');
+      const cards = document.querySelectorAll('.speaker-card');
+      const fontDec = document.getElementById('fontDec');
+      const fontInc = document.getElementById('fontInc');
+      const scriptTexts = document.querySelectorAll('.script-text');
+
+      // Filter Pembicara
+      speakerSelect.addEventListener('change', (e) => {
+        const val = e.target.value;
+        cards.forEach(card => {
+          if (val === 'all') {
+            card.style.display = 'block';
+            card.classList.remove('active-filter');
+          } else {
+            if (card.getAttribute('data-speaker') === val) {
+              card.style.display = 'block';
+              card.classList.add('active-filter');
+              card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+              card.style.display = 'none';
+              card.classList.remove('active-filter');
+            }
+          }
+        });
+      });
+
+      // Kontrol Ukuran Font
+      let currentSize = 1.2; // default in rem
+      fontInc.addEventListener('click', () => {
+        if (currentSize < 2.0) {
+          currentSize += 0.1;
+          scriptTexts.forEach(el => el.style.fontSize = `${currentSize}rem`);
+        }
+      });
+
+      fontDec.addEventListener('click', () => {
+        if (currentSize > 0.9) {
+          currentSize -= 0.1;
+          scriptTexts.forEach(el => el.style.fontSize = `${currentSize}rem`);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
