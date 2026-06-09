@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rasa Bangga pada Negara Indonesia - Presentasi PKN</title>
+  
+  <!-- Google Fonts: Inter and Anton -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-lime">
+
+  <!-- Core Icons (SVGs) -->
+  <svg style="display: none;">
+    <!-- Megaphone Icon -->
+    <g id="icon-megaphone">
+      <path d="M20 21h-4v-2h4v2zm-2-8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5zm-5-3.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5zM3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+    </g>
+    <!-- Globe/World Icon -->
+    <g id="icon-globe">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.53c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+    </g>
+    <!-- Palm Tree Icon -->
+    <g id="icon-palm">
+      <path d="M12 2C6.48 2 2 6.48 2 12c0 4.19 2.58 7.78 6.26 9.29.34-.69.74-1.63.74-2.29 0-.48-.06-.9-.12-1.39-2.18-.57-3.88-2.52-3.88-4.91 0-2.31 1.58-4.24 3.7-4.81.08.77.2 1.83.4 2.87-1.47.65-2.48 2.13-2.48 3.84 0 1.79 1.1 3.29 2.67 3.89-.04-.54-.1-1.23-.1-1.89 0-3.32 1.34-6 3-6s3 2.68 3 6c0 .66-.06 1.35-.1 1.89 1.57-.6 2.67-2.1 2.67-3.89 0-1.71-1.01-3.19-2.48-3.84.2-1.04.32-2.1.4-2.87 2.12.57 3.7 2.5 3.7 4.81 0 2.39-1.7 4.34-3.88 4.91-.06.49-.12.91-.12 1.39 0 .66.4 1.6.74 2.29C19.42 19.78 22 16.19 22 12c0-5.52-4.48-10-10-10zm.5 12h-1v4h1v-4z"/>
+    </g>
+    <!-- Solidarity Fist Icon -->
+    <g id="icon-fist">
+      <path d="M12 2C6.48 2 2 6.48 2 12c0 3.77 2.09 7.05 5.19 8.78L8.7 18.2C6.4 16.9 5 14.6 5 12c0-3.9 3.1-7 7-7s7 3.1 7 7c0 2.6-1.4 4.9-3.7 6.2l1.5 2.6c3.1-1.7 5.2-5 5.2-8.8 0-5.52-4.48-10-10-10zm0 4c-3.3 0-6 2.7-6 6 0 1.9 1 3.6 2.4 4.6l1.5-2.6c-.6-.6-.9-1.3-.9-2 0-1.7 1.3-3 3-3s3 1.3 3 3c0 .7-.3 1.4-.9 2l1.5 2.6c1.4-1 2.4-2.7 2.4-4.6 0-3.3-2.7-6-6-6z"/>
+    </g>
+    <!-- Butterfly Icon (Good Secrets Stamp) -->
+    <g id="icon-butterfly">
+      <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm1 14.5c0 .8-.7 1.5-1.5 1.5s-1.5-.7-1.5-1.5.7-1.5 1.5-1.5 1.5.7 1.5 1.5zm-1-4.5c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5 1.5.7 1.5 1.5-.7 1.5-1.5 1.5zM8.5 9.5c0 .8-.7 1.5-1.5 1.5S5.5 10.3 5.5 9.5 6.2 8 7 8s1.5.7 1.5 1.5zm8.5 0c0 .8-.7 1.5-1.5 1.5s-1.5-.7-1.5-1.5.7-1.5 1.5-1.5 1.5.7 1.5 1.5z"/>
+    </g>
+    <!-- Speech bubble Q&A Icon -->
+    <g id="icon-speech">
+      <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/>
+    </g>
+  </svg>
+
+  <!-- Navigation Chrome -->
+  <header>
+    <!-- Left: Hamburger button -->
+    <button class="menu-btn" aria-label="Buka Menu" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Center: Dynamic Logo stamp -->
+    <div class="logo-center" id="logoCenter">
+      <svg viewBox="0 0 24 24">
+        <use xlink:href="#icon-butterfly"></use>
+      </svg>
+      <div style="display: flex; flex-direction: column; font-size: 0.65rem; font-weight: 700; line-height: 1.1; text-transform: uppercase; letter-spacing: 0.05em;">
+        <span>Indonesia</span>
+        <span>Bergerak</span>
+      </div>
+    </div>
+
+    <!-- Right: Reference link -->
+    <div class="nav-right">
+      <a href="https://goodsecrets.co/" target="_blank" class="nav-link" style="font-size: 0.75rem;">Ref: Good Secrets</a>
+    </div>
+  </header>
+
+  <!-- Slanted Sidebar Drawer -->
+  <div class="sidebar" id="sidebarMenu">
+    <nav class="sidebar-nav">
+      <a href="#cover" class="sidebar-link" data-slide="0"><span>01</span>Cover</a>
+      <a href="#intro" class="sidebar-link" data-slide="1"><span>02</span>Latar Belakang</a>
+      <a href="#linimasa" class="sidebar-link" data-slide="2"><span>03</span>Linimasa</a>
+      <a href="#aksi" class="sidebar-link" data-slide="3"><span>04</span>Cara Aksi</a>
+      <a href="#konsep" class="sidebar-link" data-slide="4"><span>05</span>Patriotisme Kritis</a>
+      <a href="#refleksi" class="sidebar-link" data-slide="5"><span>06</span>Refleksi Diri</a>
+      <a href="#penutup" class="sidebar-link" data-slide="6"><span>07</span>Penutup</a>
+    </nav>
+  </div>
+
+  <!-- Scroll snaps container -->
+  <main class="scroll-container" id="scrollContainer">
+
+    <!-- Slide 1: Cover (Hero) -->
+    <section id="cover" class="theme-lime" data-theme="lime">
+      <div class="slide-content-full" style="text-align: center;">
+        <h1 class="display-text" style="color: var(--color-pure-black);">
+          Rasa Bangga<br>Pada Negara<br>Indonesia
+        </h1>
+        <p class="body-text" style="margin: 0 auto; text-transform: uppercase; font-weight: 900; letter-spacing: 0.1em; font-size: 0.9rem;">
+          Studi Kasus: Solidaritas Diaspora Indonesia (2024–2025)
+        </p>
+      </div>
+
+      <!-- Rotating Circle Badge (Good Secrets Style) -->
+      <div class="rotating-badge">
+        <svg viewBox="0 0 100 100">
+          <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
+          <text font-size="7.5" font-weight="900" fill="currentColor" letter-spacing="1">
+            <textPath xlink:href="#circlePath">
+              PENDIDIKAN KEWARGANEGARAAN • PRESENTASI REFLEKSI DIRI • 
+            </textPath>
+          </text>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Slide 2: Latar Belakang -->
+    <section id="intro" class="theme-indigo" data-theme="indigo">
+      <div class="repeating-outline">LATAR BELAKANG</div>
+      <div class="slide-grid">
+        <div>
+          <h2 class="display-text">
+            Bergerak<br>Dari Jauh
+            <span class="glyph pink">
+              <svg viewBox="0 0 24 24" style="width:100%; height:100%; fill:inherit;"><use xlink:href="#icon-globe"></use></svg>
+            </span>
+          </h2>
+        </div>
+        <div class="glass-card">
+          <h3 class="sub-display hl-lime">Solidaritas Lintas 4 Benua</h3>
+          <p class="body-text" style="color: var(--color-offwhite);">
+            Biasanya, rasa bangga terhadap negara ditunjukkan lewat cara pasif seperti mempromosikan pariwisata atau budaya. Namun, sejak pertengahan 2024, jutaan diaspora Indonesia membuktikan kebanggaan mereka secara aktif dengan <strong class="hl-lime">turun ke jalan di berbagai negara</strong> untuk mengawal keadilan demokrasi di tanah air.
+          </p>
+          <p class="body-text" style="color: var(--color-lime); margin-top: 1rem; font-weight: 700;">
+            Estimasi Diaspora: 6 - 9 Juta Jiwa di seluruh dunia.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 3: Linimasa Gerakan -->
+    <section id="linimasa" class="theme-dark" data-theme="dark">
+      <div class="slide-content-full">
+        <h2 class="display-text" style="font-size: clamp(2.5rem, 6vw, 5rem); margin-bottom: 3rem;">
+          Linimasa Aksi Diaspora
+          <span class="glyph mint">
+            <svg viewBox="0 0 24 24" style="width:100%; height:100%; fill:inherit;"><use xlink:href="#icon-palm"></use></svg>
+          </span>
+        </h2>
+        
+        <div class="timeline-container">
+          <!-- Card 1 -->
+          <div class="timeline-card">
+            <div class="timeline-date">Agt 2024</div>
+            <div class="timeline-title hl-lime">Melbourne Bergerak</div>
+            <p class="body-text" style="font-size: 1rem; color: #ccc;">
+              Aksi perdana digelar mahasiswa doktoral di depan KJRI Melbourne, menyoroti kekhawatiran terhadap situasi konstitusional tanah air secara damai dan mandiri.
+            </p>
+          </div>
+          <!-- Card 2 -->
+          <div class="timeline-card" style="border-top-color: var(--color-pink);">
+            <div class="timeline-date" style="color: var(--color-pink);">Mar 2025</div>
+            <div class="timeline-title hl-lime">Indonesia Gelap</div>
+            <p class="body-text" style="font-size: 1rem; color: #ccc;">
+              Aksi serentak di Melbourne (Australia) dan Brandenburg Gate (Berlin, Jerman). Diaspora membentangkan spanduk bertuliskan isu kemunduran demokrasi.
+            </p>
+          </div>
+          <!-- Card 3 -->
+          <div class="timeline-card" style="border-top-color: var(--color-mint);">
+            <div class="timeline-date" style="color: var(--color-mint);">Sept 2025</div>
+            <div class="timeline-title hl-lime">Puncak Gelombang</div>
+            <p class="body-text" style="font-size: 1rem; color: #ccc;">
+              Lebih dari 400 WNI berkumpul di Federation Square, Melbourne menyuarakan tuntutan, disusul demonstrasi serupa di New York, London, dan Rotterdam.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4: Cara Aksi & Karakteristik -->
+    <section id="aksi" class="theme-lime" data-theme="lime">
+      <div class="slide-content-full">
+        <h2 class="display-text" style="font-size: clamp(2.5rem, 6vw, 5rem); color: var(--color-pure-black);">
+          Aksi yang Kreatif & Bermartabat
+          <span class="glyph coral">
+            <svg viewBox="0 0 24 24" style="width:100%; height:100%; fill:inherit;"><use xlink:href="#icon-megaphone"></use></svg>
+          </span>
+        </h2>
+
+        <div class="feature-grid">
+          <!-- Feature 1 -->
+          <div class="feature-card">
+            <svg class="feature-icon" viewBox="0 0 24 24"><use xlink:href="#icon-megaphone"></use></svg>
+            <h3 class="feature-title">Seni & Puisi</h3>
+            <p style="font-size: 0.9rem; line-height: 1.4;">Menggunakan sastra dan orasi puitis sebagai bentuk protes damai nan berkelas.</p>
+          </div>
+          <!-- Feature 2 -->
+          <div class="feature-card">
+            <svg class="feature-icon" viewBox="0 0 24 24"><use xlink:href="#icon-globe"></use></svg>
+            <h3 class="feature-title">Musik</h3>
+            <p style="font-size: 0.9rem; line-height: 1.4;">Menyanyikan lagu kebangsaan dan perjuangan di ruang publik perkotaan luar negeri.</p>
+          </div>
+          <!-- Feature 3 -->
+          <div class="feature-card">
+            <svg class="feature-icon" viewBox="0 0 24 24"><use xlink:href="#icon-fist"></use></svg>
+            <h3 class="feature-title">Petisi</h3>
+            <p style="font-size: 0.9rem; line-height: 1.4;">Menyusun surat terbuka dan menggalang tanda tangan petisi untuk pembuat kebijakan.</p>
+          </div>
+          <!-- Feature 4 -->
+          <div class="feature-card">
+            <svg class="feature-icon" viewBox="0 0 24 24"><use xlink:href="#icon-butterfly"></use></svg>
+            <h3 class="feature-title">Lokal & Global</h3>
+            <p style="font-size: 0.9rem; line-height: 1.4;">Berkolaborasi dengan jaringan internasional untuk mempopulerkan isu keadilan.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5: Konsep Patriotisme Kritis -->
+    <section id="konsep" class="theme-indigo" data-theme="indigo">
+      <div class="repeating-outline" style="-webkit-text-stroke: 1px rgba(255,255,255,0.08);">PATRIOTISME</div>
+      <div class="slide-content-full">
+        <h2 class="display-text" style="font-size: clamp(3rem, 7vw, 6rem);">
+          Patriotisme<br>Kritis
+          <span class="glyph pink">
+            <svg viewBox="0 0 24 24" style="width:100%; height:100%; fill:inherit;"><use xlink:href="#icon-fist"></use></svg>
+          </span>
+        </h2>
+        <div style="max-width: 900px; margin-top: 2rem;">
+          <p class="sub-display hl-lime">Rasa Bangga Tidak Selalu Berwajah Senyuman</p>
+          <p class="body-text" style="color: var(--color-offwhite); font-size: 1.35rem; line-height: 1.7;">
+            Kebanggaan sejati tidak menuntut warganya membenarkan segala tindakan negara. Konsep <strong class="hl-lime">Patriotisme Kritis</strong> mengajarkan bahwa bentuk cinta tanah air terbesar justru ditunjukkan ketika warga negaranya memiliki keberanian untuk meluruskan hal-hal menyimpang, demi menjaga cita-cita luhur Pancasila dan konstitusi tetap tegak.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 6: Refleksi Diri -->
+    <section id="refleksi" class="theme-offwhite" data-theme="offwhite">
+      <div class="slide-content-full">
+        <div class="qa-box">
+          <div class="question">
+            <h2 class="sub-display hl-lime" style="margin-bottom: 0.5rem; font-size: 1.2rem; font-family: var(--font-body); letter-spacing: 0.05em;">Pertanyaan Refleksi</h2>
+            <h3 style="font-family: var(--font-body); font-weight: 800; font-size: clamp(1.8rem, 3.5vw, 2.6rem); margin-bottom: 0; color: var(--color-offwhite); line-height: 1.2; letter-spacing: -0.02em;">
+              Apakah Anda bangga menjadi Warga Negara Indonesia?
+            </h3>
+          </div>
+          <div class="answer">
+            <h2 class="sub-display hl-pink" style="margin-bottom: 0.5rem; font-size: 1.2rem; font-family: var(--font-body); letter-spacing: 0.05em;">Jawaban & Penjelasan</h2>
+            <p class="body-text" style="font-size: clamp(1rem, 1.6vw, 1.2rem); line-height: 1.6; color: #ddd;">
+              <strong class="hl-lime">Ya, saya sangat bangga.</strong> Kebanggaan saya tidak semata-mata bertumpu pada warisan sejarah masa lalu, pariwisata, atau kebudayaan. Lebih dari itu, saya bangga pada <strong class="hl-pink">karakter masyarakatnya yang tidak apatis</strong>. Solidaritas diaspora membuktikan bahwa empati melampaui batas geografis. Saya bangga menjadi bagian dari warga negara yang kritis, dinamis, dan memiliki kepedulian mendalam terhadap masa depan demokrasi serta keadilan sosial di Indonesia.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 7: Penutup -->
+    <section id="penutup" class="theme-dark" data-theme="dark">
+      <div class="slide-content-full" style="text-align: center;">
+        <h2 class="display-text" style="color: var(--color-lime); font-size: clamp(4rem, 10vw, 9rem);">
+          WOW. YES. SOLD.<br>TERIMA KASIH
+        </h2>
+        <p class="body-text" style="margin: 2rem auto 0; font-size: 1.1rem; color: #ccc; max-width: 600px;">
+          "Rasa bangga yang sejati adalah rasa bangga yang mendorong perbaikan ke arah yang lebih baik."
+        </p>
+        <div style="margin-top: 3rem; display: flex; justify-content: center; gap: 2rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; color: var(--color-offwhite);">
+          <span>Referensi: Kompas • Tempo • CNBC • VOA</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Floating Dot Navigation (Right Side) -->
+  <div class="dot-nav" id="dotNav">
+    <button class="dot-link active" data-slide="0" aria-label="Slide 1" title="Cover"></button>
+    <button class="dot-link" data-slide="1" aria-label="Slide 2" title="Latar Belakang"></button>
+    <button class="dot-link" data-slide="2" aria-label="Slide 3" title="Linimasa"></button>
+    <button class="dot-link" data-slide="3" aria-label="Slide 4" title="Cara Aksi"></button>
+    <button class="dot-link" data-slide="4" aria-label="Slide 5" title="Patriotisme Kritis"></button>
+    <button class="dot-link" data-slide="5" aria-label="Slide 6" title="Refleksi Diri"></button>
+    <button class="dot-link" data-slide="6" aria-label="Slide 7" title="Penutup"></button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
