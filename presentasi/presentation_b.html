@@ -195,7 +195,7 @@
         </h2>
 
         <div class="glass-panel reveal" style="margin-top: 1rem;">
-          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2.5rem;">
+          <div class="lpdp-grid">
             <div>
               <div style="font-size: 0.75rem; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-mint); margin-bottom: 0.8rem;">Awal 2026</div>
               <p style="font-size: 0.95rem; line-height: 1.6; color: #ccc;">Alumni LPDP berinisial DS mengupayakan kewarganegaraan Inggris untuk anaknya.</p>
@@ -254,7 +254,7 @@
           </span>
         </h2>
 
-        <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; margin-top: 1rem;">
+        <div class="argumen-grid">
           <div>
             <p class="body-text" style="margin-bottom: 1.5rem; color: #333;">
               Negara menuntut para ahli kembali untuk mengabdi, namun tidak mengapresiasinya dengan remunerasi yang layak serta ekosistem riset yang aman dari korupsi.
@@ -553,8 +553,8 @@
 
       // Intersection Observer for Slide snapping, themes, and animations
       const observerOptions = {
-        root: scrollContainer,
-        threshold: 0.5
+        root: window.innerWidth > 768 ? scrollContainer : null,
+        threshold: window.innerWidth > 768 ? 0.5 : 0.25
       };
 
       const observer = new IntersectionObserver((entries) => {

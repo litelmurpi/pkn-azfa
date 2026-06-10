@@ -622,3 +622,265 @@ section.active .compare-card:nth-child(2) { transition-delay: 0.35s; }
     background: rgba(0, 0, 0, 0.05) !important;
   }
 }
+
+/* ===== RESPONSIVE STYLING ===== */
+
+/* Desktop layout classes (replacing inline styles) */
+.lpdp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2.5rem;
+}
+
+.argumen-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3rem;
+  margin-top: 1rem;
+}
+
+/* Tablet / Landscape Mobile Responsive (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .lpdp-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .argumen-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .compare-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+/* Mobile Responsive (max-width: 768px) */
+@media (max-width: 768px) {
+  /* Disable scroll snapping to allow natural scrolling on mobile and avoid content cutoff */
+  html {
+    overflow: auto !important;
+    height: auto !important;
+  }
+
+  body {
+    overflow: auto !important;
+    height: auto !important;
+    width: auto !important;
+  }
+
+  .scroll-container {
+    height: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: none !important;
+  }
+
+  section {
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow: visible !important;
+    padding: 110px 1.5rem 4rem 1.5rem !important; /* increased top padding to clear the fixed header */
+  }
+
+  section:last-of-type {
+    padding-bottom: 8rem !important; /* extra padding at the bottom of presentation */
+  }
+
+  /* Prevent headings and glyphs from overlapping when wrapped on small screens */
+  .display-text {
+    line-height: 1.15 !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Position decorative background text so it doesn't overlap content */
+  .repeating-outline {
+    font-size: 1.1rem !important;
+    top: 90px !important;
+    left: 1.5rem !important;
+  }
+
+  /* Header style updates: Add colored glassmorphism background to prevent text overlapping during scroll */
+  header {
+    padding: 0 1.5rem !important;
+    height: 70px !important;
+    pointer-events: auto !important;
+    transition: background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+  }
+
+  /* Theme-aware header backgrounds matching slide themes */
+  .theme-lime header {
+    background: rgba(211, 237, 107, 0.88) !important;
+    border-bottom-color: rgba(0, 0, 0, 0.1) !important;
+    color: var(--color-pure-black) !important;
+  }
+  .theme-indigo header {
+    background: rgba(100, 100, 255, 0.88) !important;
+    border-bottom-color: rgba(255, 255, 255, 0.15) !important;
+    color: var(--color-offwhite) !important;
+  }
+  .theme-dark header {
+    background: rgba(14, 14, 14, 0.88) !important;
+    border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+    color: var(--color-offwhite) !important;
+  }
+  .theme-offwhite header {
+    background: rgba(239, 239, 239, 0.88) !important;
+    border-bottom-color: rgba(0, 0, 0, 0.1) !important;
+    color: var(--color-pure-black) !important;
+  }
+
+  /* Hide print button on mobile/tablet */
+  #btnPrint {
+    display: none !important;
+  }
+
+  .nav-right {
+    gap: 0.5rem !important;
+  }
+
+  .nav-right .nav-link {
+    font-size: 0.68rem !important;
+    padding: 0.25rem 0.5rem !important;
+  }
+
+  /* Member grid layout updates */
+  .member-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
+    gap: 0.75rem !important;
+  }
+
+  .member-card {
+    padding: 1.25rem 1rem !important;
+  }
+
+  /* General glass panel & quote block responsive padding */
+  .glass-panel {
+    padding: 1.5rem !important;
+    margin-top: 1rem !important;
+  }
+
+  .quote-block {
+    padding: 1.25rem 1.5rem !important;
+    margin: 1rem 0 !important;
+  }
+
+  .quote-block p {
+    font-size: 1.05rem !important;
+  }
+
+  .compare-card {
+    padding: 1.5rem !important;
+  }
+
+  /* Slide 4: Principle Box vertical stack */
+  .principle-box {
+    border-radius: 16px !important;
+    padding: 12px 16px !important;
+    font-size: 0.8rem !important;
+    flex-direction: column !important;
+    text-align: center !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Slide 7: Data Bars stack labels vertically */
+  .data-bar-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+  }
+
+  .data-bar-label {
+    width: auto !important;
+    text-align: left !important;
+  }
+
+  .data-bar-track {
+    width: 100% !important;
+  }
+
+  /* Sidebar navigation adjustments for scrollability */
+  .sidebar {
+    padding: 80px 1.5rem 2rem 1.5rem !important;
+    align-items: flex-start !important;
+    overflow-y: auto !important;
+  }
+
+  .sidebar-nav {
+    gap: 1.25rem !important;
+    width: 100% !important;
+  }
+
+  .sidebar-link {
+    font-size: clamp(2rem, 6vw, 3.5rem) !important;
+  }
+
+  .sidebar-link span {
+    font-size: 1rem !important;
+    margin-right: 0.75rem !important;
+  }
+
+  /* Speaker Notes Panel styling adjustment */
+  .notes-toggle {
+    bottom: 1rem !important;
+    left: 1rem !important;
+    padding: 8px 14px !important;
+    font-size: 0.7rem !important;
+  }
+
+  .notes-panel.open {
+    max-height: 45vh !important;
+  }
+
+  .notes-content {
+    padding: 1.5rem !important;
+    max-height: 45vh !important;
+  }
+
+  .notes-text {
+    font-size: 0.85rem !important;
+    line-height: 1.6 !important;
+  }
+}
+
+/* Extra Small Screens (max-width: 640px) */
+@media (max-width: 640px) {
+  /* Header elements sizing & layout */
+  header {
+    padding: 0 1rem !important;
+    height: 60px !important;
+  }
+
+  .logo-center {
+    font-size: 0.55rem !important;
+  }
+
+  .logo-center svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .nav-right .nav-link {
+    font-size: 0.65rem !important;
+    padding: 0.2rem 0.4rem !important;
+  }
+
+  /* Slide 4: Huge text adjustments to prevent screen overflows */
+  .answer-huge {
+    font-size: clamp(3.5rem, 15vw, 6rem) !important;
+  }
+
+  /* Slide 5: Stat pills expand full width */
+  .stat-pill {
+    width: 100% !important;
+    padding: 0.8rem 1rem !important;
+  }
+
+  .stat-value {
+    font-size: 1.25rem !important;
+  }
+}
