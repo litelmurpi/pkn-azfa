@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slide Tanya Jawab (Q&A) — Kelompok 6 PKN</title>
+  <!-- Google Fonts: Inter and Anton -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-lime: #d3ed6b;
+      --color-indigo: #6464ff;
+      --color-dark: #0e0e0e;
+      --color-card-bg: #161618;
+      --color-offwhite: #efefef;
+      --color-pink: #db53e2;
+      --color-coral: #f1584b;
+      --color-mint: #58ba98;
+      
+      --font-body: 'Inter', sans-serif;
+      --font-display: 'Anton', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--color-dark);
+      color: var(--color-offwhite);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Grid Background Decorative */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(100, 100, 255, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(211, 237, 107, 0.05) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    header {
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+      z-index: 10;
+      background: rgba(14, 14, 14, 0.8);
+      backdrop-filter: blur(10px);
+    }
+
+    .back-btn {
+      color: var(--color-lime);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      border: 1px solid var(--color-lime);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: var(--color-lime);
+      color: var(--color-dark);
+      box-shadow: 0 0 15px rgba(211, 237, 107, 0.2);
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--color-lime);
+    }
+
+    .container {
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .slide-title-area {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .slide-tag {
+      display: inline-block;
+      border: 1px solid var(--color-indigo);
+      color: var(--color-indigo);
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 0.4rem 0.8rem;
+      border-radius: 50px;
+      margin-bottom: 0.75rem;
+    }
+
+    .slide-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      text-transform: uppercase;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+
+    .slide-title span {
+      color: var(--color-lime);
+    }
+
+    /* Q&A Interactive Panel */
+    .qa-panel {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      min-height: 450px;
+    }
+
+    @media (min-width: 850px) {
+      .qa-panel {
+        grid-template-columns: 1fr 1.5fr;
+      }
+    }
+
+    .qa-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      overflow-y: auto;
+      max-height: 500px;
+      padding-right: 0.5rem;
+    }
+
+    /* Custom Scrollbar */
+    .qa-sidebar::-webkit-scrollbar,
+    .qa-body::-webkit-scrollbar {
+      width: 6px;
+    }
+    .qa-sidebar::-webkit-scrollbar-track,
+    .qa-body::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 3px;
+    }
+    .qa-sidebar::-webkit-scrollbar-thumb,
+    .qa-body::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+    }
+
+    .qa-button {
+      background: var(--color-card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 14px;
+      padding: 1.2rem;
+      text-align: left;
+      cursor: pointer;
+      color: var(--color-offwhite);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .qa-button:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--color-lime);
+      transform: translateX(5px);
+    }
+
+    .qa-button.active {
+      background: rgba(211, 237, 107, 0.08);
+      border-color: var(--color-lime);
+      box-shadow: 0 4px 20px rgba(211, 237, 107, 0.08);
+    }
+
+    .qa-asker-meta {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.4);
+      transition: color 0.3s;
+    }
+
+    .qa-button.active .qa-asker-meta {
+      color: var(--color-lime);
+    }
+
+    .qa-summary-text {
+      font-size: 0.95rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .qa-body {
+      background: var(--color-card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 24px;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow-y: auto;
+      max-height: 500px;
+      position: relative;
+    }
+
+    .qa-body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.01) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .section-title {
+      font-size: 0.75rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .question-section {
+      border-left: 4px solid var(--color-pink);
+      padding-left: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .question-section .section-title {
+      color: var(--color-pink);
+    }
+
+    .question-text {
+      font-size: 1.1rem;
+      font-weight: 600;
+      line-height: 1.5;
+      color: var(--color-offwhite);
+    }
+
+    .answer-section {
+      border-left: 4px solid var(--color-lime);
+      padding-left: 1.2rem;
+      flex: 1;
+    }
+
+    .answer-section .section-title {
+      color: var(--color-lime);
+    }
+
+    .answer-text {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #ccc;
+      text-align: justify;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      text-align: center;
+      background: #09090a;
+      font-size: 0.7rem;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      position: relative;
+      z-index: 10;
+    }
+
+    footer span {
+      color: var(--color-lime);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Q&A Kelompok 6</div>
+    <a href="prompter_b.html" class="back-btn">← Naskah Prompter</a>
+  </header>
+
+  <div class="container">
+    <div class="slide-title-area">
+      <div class="slide-tag">Sesi Tanya Jawab</div>
+      <h1 class="slide-title">Pertanyaan & <span>Jawaban</span></h1>
+    </div>
+
+    <div class="qa-panel">
+      <!-- Left: Sidebar list -->
+      <div class="qa-sidebar">
+        <!-- Question 1 -->
+        <button class="qa-button active" onclick="loadQA(0)">
+          <span class="qa-asker-meta">Galih Kusuma → Adam</span>
+          <span class="qa-summary-text">Gaji Dosen ASN vs Industri Swasta</span>
+        </button>
+        <!-- Question 2 -->
+        <button class="qa-button" onclick="loadQA(1)">
+          <span class="qa-asker-meta">Arman Rizki → Azfa</span>
+          <span class="qa-summary-text">Narasi 'Tidak Bangga' & Pesimisme</span>
+        </button>
+        <!-- Question 3 -->
+        <button class="qa-button" onclick="loadQA(2)">
+          <span class="qa-asker-meta">Alif Ya → Ncha</span>
+          <span class="qa-summary-text">Nasionalisme Kondisional vs Tulus</span>
+        </button>
+        <!-- Question 4 -->
+        <button class="qa-button" onclick="loadQA(3)">
+          <span class="qa-asker-meta">Pebri → Ima</span>
+          <span class="qa-summary-text">Kekuatan Paspor: Relevan vs Elitis</span>
+        </button>
+        <!-- Question 5 -->
+        <button class="qa-button" onclick="loadQA(4)">
+          <span class="qa-asker-meta">Nurul Annisa → Sherly</span>
+          <span class="qa-summary-text">Etika Uang Pajak vs Keadilan Sosial</span>
+        </button>
+        <!-- Question 6 -->
+        <button class="qa-button" onclick="loadQA(5)">
+          <span class="qa-asker-meta">Arya → Kelompok</span>
+          <span class="qa-summary-text">Komitmen Kontrak LPDP & Civic Duty</span>
+        </button>
+      </div>
+
+      <!-- Right: Content Display -->
+      <div class="qa-body">
+        <div class="question-section">
+          <span class="section-title" id="askerLabel">Pertanyaan Galih Kusuma Kepada Muhammad Adam:</span>
+          <p class="question-text" id="questionText">Memuat pertanyaan...</p>
+        </div>
+
+        <div class="answer-section">
+          <span class="section-title">Jawaban Kelompok:</span>
+          <p class="answer-text" id="answerText">Memuat jawaban...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    UTS PENDIDIKAN KEWARGANEGARAAN • UNIVERSITAS <span>AMIKOM</span> YOGYAKARTA
+  </footer>
+
+  <script>
+    const qaDatabase = [
+      {
+        label: "Pertanyaan Galih Kusuma Kepada Muhammad Adam:",
+        question: "Disebutkan gaji pokok dosen ASN berkisar Rp 2,9–4,7 juta. Mengingat DS adalah alumni LPDP yang menempuh pendidikan di luar negeri, apakah adil menyamakan ekspektasi karier atau remunerasi seluruh alumni LPDP dengan standar gaji dosen ASN tersebut? Bukankah banyak bidang industri swasta atau non-ASN di Indonesia yang bisa memberikan apresiasi layak?",
+        answer: "Menyamakan ekspektasi karier seluruh alumni dengan gaji ASN dosen memang tidak sepenuhnya komparabel untuk sektor swasta. Namun, poin kritis kami adalah pada komitmen negara sebagai penyedia beasiswa. LPDP adalah program pemerintah, dan tuntutan 'pulang untuk mengabdi' sering kali diarahkan pada sektor publik, riset, dan akademisi (seperti BRIN atau universitas negeri) guna membangun fondasi sains nasional. Sektor swasta Indonesia memang menawarkan gaji lebih tinggi, tetapi serapannya sangat terbatas untuk keahlian riset tingkat lanjut (R&D) yang bersifat teoritis atau berteknologi tinggi. Jika negara membiayai studi lanjutan menggunakan APBN, sudah sepatutnya ekosistem sektor publik juga direformasi agar sanggup menyerap talenta riset secara layak, tidak hanya menggantungkan harapan pada inisiatif swasta."
+      },
+      {
+        label: "Pertanyaan Arman Rizki Kepada Yudistira Azfa Dani Wibowo:",
+        question: "Jika kelompok intelektual seperti kalian terus mengampanyekan narasi 'tidak bangga' dan mempromosikan fenomena #KaburAjaDulu, bukankah hal ini justru memicu pesimisme massal yang membuat Indonesia semakin terpuruk karena ditinggal generasi pintarnya?",
+        answer: "Narasi 'tidak bangga' yang kami sampaikan bukan bertujuan untuk menyebarkan pesimisme buta atau keputusasaan (defeatism), melainkan sebagai 'alarm kritis' (critical warning). Patriotisme tidak selalu berarti pujian tanpa syarat. Mengakui bahwa ekosistem kita belum siap menghargai talenta adalah langkah pertama untuk perbaikan nyata (problem recognition). Justru dengan terus menyuarakan kritik ini secara terbuka, kami mendesak para pengambil kebijakan untuk segera mereformasi birokrasi, iklim riset, dan sistem upah. Menutupi kelemahan struktural dengan paksaan moral nasionalisme semu justru akan memperlama pembenahan sistemik tersebut."
+      },
+      {
+        label: "Pertanyaan Alif Ya Asta Rini Kepada Nisa Athifah:",
+        question: "Jika rasa bangga terhadap negara hanya muncul ketika negara mampu memenuhi harapan warganya, apakah itu masih nasionalisme yang tulus? Bukankah hal tersebut membuat cinta terhadap negara menjadi bersifat kondisional dan mudah berpindah ke negara lain yang menawarkan fasilitas lebih baik?",
+        answer: "Nasionalisme modern di era globalisasi tidak lagi berbentuk kesetiaan dogmatis satu arah yang feudal. Kami bersandar pada konsep 'Nasionalisme Reciprocal' (Timbal Balik) yang rasional. Hubungan antara warga negara dan negara adalah ikatan kontrak sosial yang dinamis. Cinta pada negara tetap ada, namun cinta yang dewasa menuntut akuntabilitas. Menuntut warga negara memberikan loyalitas tanpa batas sementara negara tidak memberikan jaminan keamanan sosial, hukum, dan kesejahteraan yang mendasar adalah bentuk eksploitasi. Nasionalisme yang tulus justru menuntut negara untuk terus berbenah agar layak dicintai, bukan sekadar memanfaatkan romantisme emosional warganya."
+      },
+      {
+        label: "Pertanyaan Pebri Kepada Wasima Juhaina:",
+        question: "Kelompok kalian menjadikan kekuatan paspor sebagai salah satu alasan rasional untuk memilih kewarganegaraan Inggris. Tapi bukankah akses ke 190+ negara itu hanya relevan bagi segelintir orang yang sering bepergian ke luar negeri? Apakah argumen ini benar-benar mewakili kebutuhan mayoritas rakyat Indonesia, atau justru hanya mencerminkan sudut pandang kalangan elite saja?",
+        answer: "Kami sepakat bahwa kekuatan paspor adalah masalah sekunder bagi mayoritas rakyat kelas pekerja yang berfokus pada kebutuhan domestik. Namun, dalam konteks studi kasus alumni LPDP (talenta riset/akademisi global), kekuatan paspor adalah instrumen krusial bagi mobilitas intelektual. Untuk melakukan kolaborasi riset internasional, menghadiri simposium, atau mengakses pendanaan global, peneliti Indonesia sering kali terhambat oleh proses visa yang rumit dan diskriminatif. Dari sudut pandang sosiologi talenta, kebebasan mobilitas ini adalah kebutuhan produktif, bukan sekadar gaya hidup mewah kalangan elite. Hal ini juga menjadi pengingat bahwa daya tawar kewarganegaraan kita di kancah global masih perlu ditingkatkan secara signifikan."
+      },
+      {
+        label: "Pertanyaan Nurul Annisa Kepada Sherly Meisya:",
+        question: "Jika alumni LPDP memilih bermigrasi ke Inggris demi kualitas hidup pribadi, bukankah itu mencederai keadilan bagi masyarakat bawah yang pajaknya membiayai beasiswa mereka? Apakah etis membenarkan sikap “tidak bangga menjadi WNI” , sementara tindakan tersebut justru membuat Indonesia semakin terpuruk karena kehilangan generasi terbaiknya?",
+        answer: "Ini adalah dilema moral terbesar dalam kasus LPDP. Secara hukum dan keadilan distributif, tindakan tidak kembali memang mencederai komitmen moral terhadap pembayar pajak. Namun, kita juga harus melihat realitas bahwa memaksa mereka pulang ke ekosistem yang tidak menyediakan ruang tumbuh (misal: peneliti tanpa laboratorium yang memadai, dosen tanpa dana riset) hanya akan membuang investasi triliunan rupiah secara sia-sia. Pilihan terbaik secara rasional adalah membangun kerja sama diaspora. Daripada memaksa pulang secara fisik ke ekosistem yang mandek, kontribusi bisa dilakukan melalui transfer teknologi, jejaring riset internasional, atau kolaborasi luar negeri. Dengan demikian, investasi pajak rakyat tetap kembali dalam bentuk inovasi, meski tidak dalam bentuk kehadiran fisik."
+      },
+      {
+        label: "Pertanyaan Arya Kepada Kelompok (Yudistira Azfa / Kelompok):",
+        question: "Kelompok Anda menekankan bahwa nasionalisme adalah hubungan timbal balik dan memaklumi pilihan rasional alumni yang menetap di luar negeri karena ekosistem domestik yang belum siap. Namun, secara hukum, setiap penerima beasiswa LPDP telah menandatangani kontrak tertulis yang sah untuk kembali dan mengabdi setelah lulus. Apakah melanggar kesepakatan hukum tertulis tersebut tetap dapat dibenarkan secara etis hanya dengan dalih 'negara belum siap'? Bukankah kepatuhan terhadap hukum dan janji tertulis merupakan salah satu pilar dasar dari tanggung jawab seorang warga negara (civic duty)?",
+        answer: "Secara hukum positif, pelanggaran kontrak (wanprestasi) jelas tidak dapat dibenarkan dan pelaku harus menerima konsekuensi/sanksi finansial sesuai aturan LPDP (seperti pengembalian dana penuh). Namun, dari perspektif etika kebajikan (virtue ethics) dan keadilan sosial, ada ketimpangan kontrak di mana negara menuntut kewajiban pengabdian fisik tanpa memenuhi komitmen penyediaan ekosistem kerja yang layak. Ketika hukum positif bentrok dengan ketidakmampuan struktural negara untuk memfasilitasi keahlian tersebut, maka pelanggaran kontrak menjadi pilihan darurat demi keberlangsungan karir dan kontribusi ilmiah nyata. Solusi etisnya bukanlah membenarkan pelanggaran hukum, melainkan mendesak negara membenahi klausul kontrak agar lebih fleksibel (seperti pengabdian jarak jauh) serta mereformasi ekosistem domestik secara paralel."
+      }
+    ];
+
+    const askerLabel = document.getElementById('askerLabel');
+    const questionText = document.getElementById('questionText');
+    const answerText = document.getElementById('answerText');
+
+    window.loadQA = function(idx) {
+      const buttons = document.querySelectorAll('.qa-button');
+      buttons.forEach((btn, i) => {
+        btn.classList.toggle('active', i === idx);
+      });
+
+      const data = qaDatabase[idx];
+      if (data) {
+        askerLabel.textContent = data.label;
+        questionText.textContent = data.question;
+        answerText.textContent = data.answer;
+      }
+    };
+
+    // Initialize first QA on load
+    document.addEventListener('DOMContentLoaded', () => {
+      window.loadQA(0);
+    });
+  </script>
+</body>
+</html>

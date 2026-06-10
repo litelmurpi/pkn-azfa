@@ -1,0 +1,80 @@
+Source: https://www.bbc.com/indonesia/articles/c620l5yzndno
+
+Beasiswa LPDP: Polemik &#x27;cukup aku saja yang WNI&#x27; – Pembangkangan, penghinaan atau kegagalan sistemik? - BBC News Indonesia
+
+(a=>{let{pathname:b}=a.location,c=a.localStorage.isOptedIntoLiteRedirect??"true";if(a?.navigator?.connection?.effectiveType){let d=`${b}.lite`;switch(a.navigator.connection.effectiveType.toLocaleLowerCase()){case"slow-2g":case"2g":"true"===c&&(a.localStorage.setItem("isOptedIntoLiteRedirect","true"),a.location.replace(d))}}})(window)
+
+window.__reverb = {};
+            window.__reverb.__reverbLoadedPromise = new Promise((resolve, reject) => {
+              window.__reverb.__resolveReverbLoaded = resolve;
+              window.__reverb.__rejectReverbLoaded = reject;
+            });
+            window.__reverb.__reverbTimeout = setTimeout(() => {
+              window.__reverb.__rejectReverbLoaded();
+            }, 5000);
+            const reverbScript = document.createElement('script');
+            reverbScript.setAttribute('src','https://mybbc-analytics.files.bbci.co.uk/reverb-client-js/reverb-3.12.0.js');
+            document.head.appendChild(reverbScript);
+
+document.documentElement.classList.remove("no-js");
+
+if (function d(){return"[object OperaMini]"===Object.prototype.toString.call(window.operamini)}()) {
+          document.documentElement.classList.add("is-opera-mini");
+        }
+
+window.addEventListener('load', function () {
+      var isComponentTrackingEnabled = true;
+      var isStaticClickTrackingOnOperaMiniOnlyEnabled = true;
+      var isComponentViewTrackingEnabled = false;
+
+      if (isStaticClickTrackingOnOperaMiniOnlyEnabled) {
+        isComponentTrackingEnabled = function d(){return"[object OperaMini]"===Object.prototype.toString.call(window.operamini)}();
+      }      
+
+      if (isComponentTrackingEnabled) {
+        (()=>{window.processClientDeviceAndSendStaticBeacon=({reverbUrl:a,forwardingUrl:b=""})=>{let{screen:{width:c,height:d,colorDepth:e,pixelDepth:f},innerWidth:g,innerHeight:h}=window,i=new Date,j=i.getHours(),k=i.getMinutes(),l=i.getSeconds(),m=i.getTime().toString(),n=(()=>{let a=document.cookie.match(/(?:^|;\s*)atuserid=([^;]*)/),b=a?.[1];if(b){let{val:a}=JSON.parse(decodeURIComponent(b));return{val:a}}return{val:null}})();!n.val&&window.crypto&&crypto.randomUUID&&(n.val=crypto.randomUUID());let o=encodeURIComponent(JSON.stringify(n));document.cookie=`atuserid=${o}; path=/; max-age=34300800; Secure;`;let p={r:[c||0,d||0,e||0,f||0].join("x"),re:[g||0,h||0].join("x"),hl:[j,k,l].join("x"),app_type:window.location.pathname?.includes(".lite")?"lite":"responsive"};if(navigator.language&&(p.lng=navigator.language),n.val&&(p.idclient=n.val),p.ref=document.referrer||"",a){let c=a.replace("{screenResolutionColourDepth}",p.r).replace("{browserViewportResolution}",p.re).replace("{timestamp}",p.hl).replace("{language}",p.lng).replaceAll("{referrer}",p.ref).replace("{idclient}",p.idclient).replace("{epochTimestamp}",m).replace("{forwardingLink}",b).replaceAll("ref=&","").replace(/&ref=$/,"");new URLSearchParams(window.location.search).forEach((a,b)=>{(b.startsWith("utm_")||b.startsWith("at_")||b.startsWith("xtor"))&&(c+=`&${encodeURIComponent(b)}=${encodeURIComponent(a)}`.replace("at_","src_").replace("xtor","xto"))}),window.sendStaticBeacon(c)}}})();
+
+        if (isComponentViewTrackingEnabled) {
+          (()=>{let a="data-static-reverb-view",b=[];if(window.IntersectionObserver){let c=new IntersectionObserver(d=>{d.forEach(d=>{if(d.isIntersecting){let{target:e}=d,f=e.getAttribute(a);setTimeout(()=>{b.includes(f)||(window.processClientDeviceAndSendStaticBeacon({reverbUrl:f}),b.push(f)),c.unobserve(e)},1e3)}})},{threshold:.5});document.querySelectorAll(`[${a}]`).forEach(a=>c.observe(a))}})();
+        }
+
+        (()=>{let a=[];document.addEventListener("click",b=>{let c,d=b.target;for(;d;){if("A"===d.tagName){c=d;break}d=d.parentElement}if(c?.tagName==="A"){b.stopPropagation(),b.preventDefault();let d=c.getAttribute("data-static-reverb-click"),e=c,f=e?.href;d&&!a.includes(d)&&(window.processClientDeviceAndSendStaticBeacon({reverbUrl:d,forwardingUrl:f}),a.push(d)),window.location.assign(f)}})})();
+      }
+    });
+
+window.sendStaticBeacon = function (atiUrlString) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", atiUrlString, true);
+        xhr.withCredentials = true;
+        xhr.send();
+    };
+
+if (function d(){return"[object OperaMini]"===Object.prototype.toString.call(window.operamini)}() && !Boolean(window.hasOperaMiniScriptRan)) {
+      window.hasOperaMiniScriptRan = true;
+
+      var atiPageViewUrl = "https://a1.api.bbc.co.uk/hit.xiti?s=598342&s2=54&p=indonesia.articles.c620l5yzndno.page&x1=[urn%3Abbc%3Aoptimo%3Aasset%3Ac620l5yzndno]&x2=[responsive]&x3=[news-indonesia]&x4=[id]&x7=[article]&x8=[simorgh]&x9=[Beasiswa%2520LPDP%3A%2520Polemik%2520'cukup%2520aku%2520saja%2520yang%2520WNI'%2520%E2%80%93%2520Pembangkangan%2C%2520penghinaan%2520atau%2520kegagalan%2520sistemik%3F]&x11=[2026-02-25T08%3A13%3A40.787Z]&x12=[2026-02-25T08%3A13%3A40.787Z]&x13=[Indonesia~Education~Social%2Bmedia]&x14=[4aa966f9-091e-4dd1-8f10-a44ca20aec5d~6942cb29-9d3f-4c9c-9806-0a0578c286d6~ea2c5d34-4279-4e06-b69a-e699321d7f9f]&x17=[Indonesia~Education~Social%2Bmedia]";
+      atiPageViewUrl += document.referrer ? "&ref=" + document.referrer : '';
+
+      window.sendStaticBeacon(atiPageViewUrl);
+    }
+
+(function(){
+          var _sf_async_config = window._sf_async_config = (window._sf_async_config || {});
+          var config = {"domain":"indonesian.bbc.co.uk","sections":"Indonesia, Indonesia - ART","uid":50924,"title":"Beasiswa LPDP: Polemik 'cukup aku saja yang WNI' – Pembangkangan, penghinaan atau kegagalan sistemik?","authors":"M. Irham","virtualReferrer":null,"type":"New Article","useCanonical":true,"path":false};
+          for (var key in config) {
+            _sf_async_config[key] = config[key];
+          }
+        })();
+
+{"@context":"https://schema.org","@graph":[{"@type":"ReportageNewsArticle","url":"https://www.bbc.com/indonesia/articles/c620l5yzndno","publisher":{"@type":"NewsMediaOrganization","name":"BBC News Indonesia","publishingPrinciples":"https://www.bbc.com/indonesia/institutional-49283175","logo":{"@type":"ImageObject","width":1024,"height":576,"url":"https://static.files.bbci.co.uk/ws/simorgh-assets/public/indonesia/images/metadata/poster-1024x576.png"}},"thumbnailUrl":"https://ichef.bbci.co.uk/news/1024/branded_indonesia/2a44/live/c76395e0-121d-11f1-9123-81d30b1ac5de.jpg","image":{"@type":"ImageObject","width":1024,"height":576,"url":"https://ichef.bbci.co.uk/news/1024/branded_indonesia/2a44/live/c76395e0-121d-11f1-9123-81d30b1ac5de.jpg"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.bbc.com/indonesia/articles/c620l5yzndno","name":"Beasiswa LPDP: Polemik 'cukup aku saja yang WNI' – Pembangkangan, penghinaan atau kegagalan sistemik?"},"headline":"Beasiswa LPDP: Polemik 'cukup aku saja yang WNI' – Pembangkangan, penghinaan atau kegagalan sistemik?","description":"Kasus DS, alumni penerima LPDP yang pamer anaknya telah menjadi warga negara Inggris telah menuai pro dan kontra.","datePublished":"2026-02-25T08:13:40.787Z","dateModified":"2026-02-25T08:13:40.787Z","inLanguage":{"@type":"Language","name":"Indonesian","alternateName":"id"},"about":[{"@type":"Thing","name":"Pendidikan","sameAs":["http://dbpedia.org/resource/Education"]},{"@type":"Place","name":"Indonesia"},{"@type":"Thing","name":"Media sosial","sameAs":["http://dbpedia.org/resource/Social_media"]}],"author":{"@type":"Person","name":"M. Irham"}}]}
+
+window.dotcom = window.dotcom || { cmd: [] };
+    window.dotcomConfig = {
+      pageAds: true,
+      playerAds: false
+    };
+
+bbcRequireMap = {
+            "bump-4":"https://emp.bbci.co.uk/emp/bump-4/bump-4"
+        }
+        require({ paths: bbcRequireMap, waitSeconds: 30 });

@@ -1,0 +1,624 @@
+/* ===== PRESENTATION B CUSTOM COMPONENTS STYLE ===== */
+
+/* Speaker Notes Panel & Toggle Button */
+.notes-toggle {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 100px;
+  color: var(--color-offwhite);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(12px);
+  pointer-events: auto;
+}
+
+.notes-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-lime);
+  border-color: var(--color-lime);
+  transform: translateY(-2px);
+}
+
+.notes-toggle svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* Light themes notes-toggle adjustment */
+.theme-lime .notes-toggle,
+.theme-offwhite .notes-toggle {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(0, 0, 0, 0.15);
+  color: var(--color-pure-black);
+}
+
+.theme-lime .notes-toggle:hover,
+.theme-offwhite .notes-toggle:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--color-indigo);
+  border-color: var(--color-indigo);
+}
+
+.notes-panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  background: rgba(14, 14, 14, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  z-index: 150;
+  transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.notes-panel.open {
+  max-height: 35vh;
+}
+
+.notes-content {
+  padding: 2rem 3rem;
+  overflow-y: auto;
+  max-height: 35vh;
+}
+
+.notes-slide-title {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: var(--color-lime);
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.notes-text {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #ccc;
+  max-width: 800px;
+}
+
+/* Slide 2: Perkenalan Kelompok Grid */
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.member-card {
+  padding: 2rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-lime .member-card,
+.theme-offwhite .member-card {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.member-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-lime);
+  transform: translateY(-5px);
+}
+
+.theme-lime .member-card:hover,
+.theme-offwhite .member-card:hover {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: var(--color-indigo);
+}
+
+.member-avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--color-indigo);
+  color: var(--color-offwhite);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin: 0 auto 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.theme-indigo .member-avatar {
+  background: var(--color-lime);
+  color: var(--color-pure-black);
+}
+
+.member-name {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+.member-nim {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.05em;
+}
+
+.theme-lime .member-nim,
+.theme-offwhite .member-nim {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* Slide 3: LPDP Glass Panel & Quote Block */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 3rem;
+  backdrop-filter: blur(16px);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: 2rem;
+}
+
+.glass-panel:hover {
+  border-color: var(--color-pink);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.theme-lime .glass-panel,
+.theme-offwhite .glass-panel {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.quote-block {
+  position: relative;
+  padding: 2rem 2.5rem;
+  border-left: 4px solid var(--color-pink);
+  background: rgba(219, 83, 226, 0.05);
+  border-radius: 0 20px 20px 0;
+  margin: 2rem 0;
+}
+
+.quote-block p {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.7;
+}
+
+/* Slide 4: Jawaban (TIDAK) */
+.answer-box {
+  text-align: center;
+  padding: 3rem 1.5rem;
+}
+
+.answer-huge {
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 15vw, 11rem);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.answer-reason {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  font-weight: 500;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+.principle-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  background: rgba(100, 100, 255, 0.08);
+  border: 1px solid rgba(100, 100, 255, 0.2);
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-indigo);
+}
+
+.theme-lime .principle-box {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: var(--color-pure-black);
+}
+
+/* Slide 5: CPI & Stats */
+.stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  font-family: var(--font-body);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-lime .stat-pill,
+.theme-offwhite .stat-pill {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.stat-pill:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-coral);
+  transform: translateY(-2px);
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.3;
+}
+
+.theme-lime .stat-label,
+.theme-offwhite .stat-label {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* Slide 6: Compare Grid (Argumen 2) */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.compare-card {
+  padding: 2.5rem;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.compare-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.compare-card.card-id {
+  background: rgba(241, 88, 75, 0.04);
+  border-color: rgba(241, 88, 75, 0.15);
+}
+
+.compare-card.card-uk {
+  background: rgba(100, 100, 255, 0.04);
+  border-color: rgba(100, 100, 255, 0.15);
+}
+
+.compare-card.card-id:hover {
+  border-color: var(--color-coral);
+  box-shadow: 0 15px 30px rgba(241, 88, 75, 0.1);
+}
+
+.compare-card.card-uk:hover {
+  border-color: var(--color-indigo);
+  box-shadow: 0 15px 30px rgba(100, 100, 255, 0.1);
+}
+
+.compare-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.compare-flag {
+  font-size: 1.8rem;
+}
+
+.compare-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.compare-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.compare-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.theme-lime .compare-item,
+.theme-offwhite .compare-item {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.compare-icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  margin-top: 2px;
+  font-weight: bold;
+}
+
+.compare-icon.neg {
+  background: rgba(241, 88, 75, 0.15);
+  color: var(--color-coral);
+}
+
+.compare-icon.pos {
+  background: rgba(88, 186, 152, 0.15);
+  color: var(--color-mint);
+}
+
+/* Slide 7: Data Bars (#KaburAjaDulu) */
+.data-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.data-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.data-bar-label {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+  width: 180px;
+  flex-shrink: 0;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.theme-lime .data-bar-label,
+.theme-offwhite .data-bar-label {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.data-bar-track {
+  flex: 1;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.theme-lime .data-bar-track,
+.theme-offwhite .data-bar-track {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.data-bar-fill {
+  height: 100%;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 15px;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: white;
+  width: 0%;
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+section.active .data-bar-fill {
+  width: var(--bar-width);
+}
+
+.bar-indigo { background: linear-gradient(90deg, var(--color-indigo) 0%, var(--color-pink) 100%); }
+.bar-pink { background: linear-gradient(90deg, var(--color-pink) 0%, var(--color-coral) 100%); }
+
+/* Slide 8: Kesimpulan & Closing */
+.closing-msg {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 600;
+  line-height: 1.3;
+  max-width: 800px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+/* Stagger reveals for stats and members */
+section.active .member-card:nth-child(1) { transition-delay: 0.15s; }
+section.active .member-card:nth-child(2) { transition-delay: 0.23s; }
+section.active .member-card:nth-child(3) { transition-delay: 0.31s; }
+section.active .member-card:nth-child(4) { transition-delay: 0.39s; }
+section.active .member-card:nth-child(5) { transition-delay: 0.47s; }
+
+section.active .stat-pill:nth-child(1) { transition-delay: 0.25s; }
+section.active .stat-pill:nth-child(2) { transition-delay: 0.35s; }
+
+section.active .compare-card:nth-child(1) { transition-delay: 0.2s; }
+section.active .compare-card:nth-child(2) { transition-delay: 0.35s; }
+
+
+/* ===== PRINT STYLING (@media print) ===== */
+@media print {
+  /* Hide all interactive UI elements */
+  header, 
+  .dot-nav, 
+  .notes-toggle, 
+  .notes-panel, 
+  .sidebar, 
+  #menuToggle,
+  #btnPrint {
+    display: none !important;
+  }
+
+  /* Reset document flow to let slides stack vertically */
+  body, html {
+    overflow: visible !important;
+    height: auto !important;
+    width: auto !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .scroll-container {
+    overflow: visible !important;
+    height: auto !important;
+    scroll-snap-type: none !important;
+  }
+
+  section {
+    page-break-after: always !important;
+    break-after: page !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: relative !important;
+    overflow: hidden !important;
+    padding: 2cm !important;
+    box-sizing: border-box !important;
+    /* Force browser to print exact backgrounds & colors */
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Specific background themes override for prints to look like presentation theme */
+  section.theme-lime {
+    background-color: #d3ed6b !important;
+    color: #000000 !important;
+  }
+
+  section.theme-indigo {
+    background-color: #6464ff !important;
+    color: #ffffff !important;
+  }
+
+  section.theme-dark {
+    background-color: #0e0e0e !important;
+    color: #ffffff !important;
+  }
+
+  section.theme-offwhite {
+    background-color: #efefef !important;
+    color: #000000 !important;
+  }
+
+  /* Override animation reveal states to be fully visible immediately */
+  .reveal, 
+  section .display-text,
+  section .sub-display,
+  section .body-text,
+  section .glass-card,
+  section .timeline-card,
+  section .feature-card,
+  section .qa-box,
+  section .rotating-badge,
+  section .overline,
+  section .quote-text,
+  .member-card,
+  .stat-pill,
+  .compare-card,
+  .glass-panel,
+  .quote-block,
+  .answer-box {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Custom component elements fixes for printed layout */
+  .member-card, .glass-panel, .compare-card, .stat-pill {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    color: inherit !important;
+  }
+
+  section.theme-lime .member-card,
+  section.theme-lime .glass-panel,
+  section.theme-lime .compare-card,
+  section.theme-lime .stat-pill,
+  section.theme-offwhite .member-card,
+  section.theme-offwhite .glass-panel,
+  section.theme-offwhite .compare-card,
+  section.theme-offwhite .stat-pill {
+    background: rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    color: #000000 !important;
+  }
+
+  /* Progress bar printing fill */
+  .data-bar-fill {
+    width: var(--bar-width) !important;
+    background: #6464ff !important; /* Force solid color for print */
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .data-bar-track {
+    border: 1px solid rgba(0, 0, 0, 0.2) !important;
+    background: rgba(0, 0, 0, 0.05) !important;
+  }
+}
