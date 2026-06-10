@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System Presentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* =========================================
+           1. COLOR PALETTE (CSS VARIABLES)
+           ========================================= */
+        :root {
+            /* Neutrals */
+            --c-black: #000000;
+            --c-dark-gray: #585858;
+            --c-silver: #c0c0c0;
+            --c-off-white: #f0f0f0;
+            
+            /* Muted / Earthy */
+            --c-pale-yellow: #ffffcc;
+            --c-khaki: #bbbb99;
+            --c-rust: #bb5522;
+            --c-olive: #779900;
+            
+            /* Vibrant / Neon Accent */
+            --c-vivid-yellow: #ffdd00;
+            --c-lime: #ccff00;
+            --c-cyan: #00dddd;
+            --c-purple: #8800ff;
+            --c-magenta: #ff00dd;
+            --c-hot-pink: #ff0055;
+
+            /* System Mapping */
+            --bg-main: var(--c-off-white);
+            --text-main: var(--c-black);
+            --border-thick: 4px solid var(--c-black);
+            --shadow-hard: 8px 8px 0px var(--c-black);
+        }
+
+        /* =========================================
+           2. GLOBAL STYLES & RESET
+           ========================================= */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--c-black); /* Latar belakang luar slide */
+            color: var(--text-main);
+            overflow: hidden; /* Mencegah scroll */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* =========================================
+           3. PRESENTATION CONTAINER (16:9 Aspect)
+           ========================================= */
+        .deck {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--bg-main);
+            /* Pola titik-titik (dot pattern) menggunakan warna silver */
+            background-image: radial-gradient(var(--c-silver) 1px, transparent 1px);
+            background-size: 20px 20px;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        }
+
+        @media (min-aspect-ratio: 16/9) {
+            .deck { width: calc(100vh * (16 / 9)); }
+        }
+        @media (max-aspect-ratio: 16/9) {
+            .deck { height: calc(100vw * (9 / 16)); }
+        }
+
+        /* =========================================
+           4. SLIDE LOGIC & ANIMATIONS
+           ========================================= */
+        .slide {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            padding: 4rem 6rem;
+            opacity: 0;
+            transform: translateY(20px) scale(0.98);
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            z-index: 1;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+            z-index: 10;
+        }
+
+        /* =========================================
+           5. UI COMPONENTS (Neo-Brutalism Style)
+           ========================================= */
+        h1 { font-size: 5rem; font-weight: 900; line-height: 1.1; text-transform: uppercase; letter-spacing: -2px; }
+        h2 { font-size: 3rem; font-weight: 700; margin-bottom: 1.5rem; }
+        h3 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
+        p { font-size: 1.2rem; line-height: 1.6; margin-bottom: 1.5rem; font-weight: 500; }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border: var(--border-thick);
+            border-radius: 50px;
+            text-transform: uppercase;
+            box-shadow: 4px 4px 0px var(--c-black);
+            margin-bottom: 1.5rem;
+        }
+
+        .card {
+            border: var(--border-thick);
+            padding: 2rem;
+            background-color: white;
+            box-shadow: var(--shadow-hard);
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translate(-4px, -4px); box-shadow: 12px 12px 0px var(--c-black); }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: var(--border-thick);
+            background-color: var(--c-magenta);
+            color: white;
+            cursor: pointer;
+            box-shadow: var(--shadow-hard);
+            transition: all 0.2s;
+            text-transform: uppercase;
+        }
+        .btn:hover { transform: translate(-4px, -4px); box-shadow: 12px 12px 0px var(--c-black); }
+        .btn:active { transform: translate(4px, 4px); box-shadow: 0px 0px 0px var(--c-black); }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; height: 100%; align-items: center; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+
+        /* Helpers */
+        .text-stroke {
+            color: transparent;
+            -webkit-text-stroke: 2px var(--c-black);
+        }
+        .highlight {
+            background-color: var(--c-vivid-yellow);
+            padding: 0 0.5rem;
+            border: 2px solid var(--c-black);
+            display: inline-block;
+            transform: rotate(-2deg);
+        }
+
+        /* =========================================
+           6. NAVIGATION CONTROLS
+           ========================================= */
+        .controls {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 100;
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-btn {
+            width: 50px; height: 50px;
+            border: var(--border-thick);
+            background-color: var(--c-vivid-yellow);
+            font-size: 1.5rem;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px var(--c-black);
+            display: flex; justify-content: center; align-items: center;
+        }
+        .nav-btn:hover { background-color: var(--c-lime); }
+        .nav-btn:active { transform: translate(4px, 4px); box-shadow: 0px 0px 0px var(--c-black); }
+        
+        .progress-bar {
+            position: absolute;
+            bottom: 0; left: 0;
+            height: 8px;
+            background-color: var(--c-purple);
+            width: 0%;
+            transition: width 0.3s;
+            z-index: 100;
+        }
+
+        /* =========================================
+           7. SLIDE SPECIFIC DESIGNS
+           ========================================= */
+        /* Slide 1: Cover */
+        #slide-1 { justify-content: center; align-items: flex-start; background-color: var(--c-pale-yellow); }
+        #slide-1 .decor { position: absolute; right: -5%; top: -10%; width: 500px; height: 500px; background-color: var(--c-purple); border-radius: 50%; border: var(--border-thick); z-index: -1; }
+        #slide-1 .decor2 { position: absolute; right: 15%; bottom: 10%; width: 200px; height: 200px; background-color: var(--c-cyan); border: var(--border-thick); transform: rotate(15deg); z-index: -1; }
+
+        /* Slide 2: Palette Grid */
+        .color-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1rem; margin-top: 2rem; }
+        .color-box { height: 100px; border: var(--border-thick); box-shadow: 4px 4px 0px var(--c-black); display: flex; align-items: flex-end; padding: 0.5rem; font-weight: bold; font-size: 0.8rem;}
+        
+        /* Slide 3: Dark Mode Typography */
+        #slide-3 { background-color: var(--c-black); color: var(--c-off-white); }
+        #slide-3 h2 { color: var(--c-lime); }
+        #slide-3 p { color: var(--c-silver); }
+        #slide-3 .badge { border-color: var(--c-off-white); color: var(--c-black); background-color: var(--c-hot-pink); box-shadow: 4px 4px 0px var(--c-cyan); }
+        #slide-3 .card { background-color: var(--c-dark-gray); border-color: var(--c-cyan); box-shadow: 8px 8px 0px var(--c-purple); color: var(--c-off-white); }
+        
+        /* Slide 4: Image/Content Split */
+        .img-placeholder { width: 100%; height: 100%; border: var(--border-thick); background-color: var(--c-rust); background-image: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(0,0,0,0.1) 20px, rgba(0,0,0,0.1) 40px); display: flex; justify-content: center; align-items: center; box-shadow: var(--shadow-hard); font-size: 2rem; font-weight: bold; color: var(--c-pale-yellow); }
+
+        /* Slide 5: Components */
+        #slide-5 { background-color: var(--c-cyan); }
+        #slide-5 .card { background-color: var(--c-pale-yellow); }
+
+    </style>
+</head>
+<body>
+
+    <div class="deck">
+        <div class="progress-bar" id="progress"></div>
+
+        <!-- SLIDE 1: COVER -->
+        <div class="slide active" id="slide-1">
+            <div class="decor"></div>
+            <div class="decor2"></div>
+            <span class="badge" style="background-color: var(--c-lime);">System Design v1.0</span>
+            <h1 class="text-stroke">Neo-Pop</h1>
+            <h1>Design <span class="highlight">System</span></h1>
+            <p style="max-width: 600px; margin-top: 1rem; font-size: 1.5rem;">Sebuah eksplorasi visual menggunakan palet warna ekstrem yang menggabungkan elemen retro dan modern brutalism.</p>
+            <button class="btn" style="margin-top: 2rem;" onclick="nextSlide()">Mulai Jelajahi</button>
+        </div>
+
+        <!-- SLIDE 2: THE PALETTE -->
+        <div class="slide" id="slide-2">
+            <h2>Color <span class="highlight">Palette</span></h2>
+            <p>14 warna HEX yang kamu berikan dimanfaatkan untuk menciptakan hierarki visual yang kuat. Kami membaginya menjadi Netral, Natural, dan Neon Accent.</p>
+            
+            <div class="color-grid">
+                <!-- Neutrals -->
+                <div class="color-box" style="background-color: var(--c-black); color: white;">000000</div>
+                <div class="color-box" style="background-color: var(--c-dark-gray); color: white;">585858</div>
+                <div class="color-box" style="background-color: var(--c-silver);">c0c0c0</div>
+                <div class="color-box" style="background-color: var(--c-off-white);">f0f0f0</div>
+                
+                <!-- Earth/Muted -->
+                <div class="color-box" style="background-color: var(--c-pale-yellow);">ffffcc</div>
+                <div class="color-box" style="background-color: var(--c-khaki);">bbbb99</div>
+                <div class="color-box" style="background-color: var(--c-rust); color: white;">bb5522</div>
+                
+                <!-- Accents (Row 2) -->
+                <div class="color-box" style="background-color: var(--c-olive); color: white;">779900</div>
+                <div class="color-box" style="background-color: var(--c-vivid-yellow);">ffdd00</div>
+                <div class="color-box" style="background-color: var(--c-lime);">ccff00</div>
+                <div class="color-box" style="background-color: var(--c-cyan);">00dddd</div>
+                <div class="color-box" style="background-color: var(--c-purple); color: white;">8800ff</div>
+                <div class="color-box" style="background-color: var(--c-magenta); color: white;">ff00dd</div>
+                <div class="color-box" style="background-color: var(--c-hot-pink); color: white;">ff0055</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: TYPOGRAPHY & DARK MODE -->
+        <div class="slide" id="slide-3">
+            <div class="grid-2">
+                <div>
+                    <span class="badge">Tipografi</span>
+                    <h1 style="font-size: 4rem; color: var(--c-cyan);">Heading 1</h1>
+                    <h2>Heading 2</h2>
+                    <h3>Heading 3</h3>
+                    <p>Latar gelap (000000) berpadu sempurna dengan warna neon (ccff00, 00dddd) untuk menciptakan efek *glow* tanpa menggunakan *shadow*, melainkan kontras murni.</p>
+                </div>
+                <div class="card">
+                    <h3 style="color: var(--c-vivid-yellow);">Komponen Kartu Gelap</h3>
+                    <p>Ini adalah contoh bagaimana card terlihat di dalam tema gelap. Garis tepinya menggunakan Cyan dan shadow menggunakan ungu (8800ff).</p>
+                    <button class="btn" style="background-color: var(--c-lime); color: var(--c-black);">Aksi Utama</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: LAYOUT & IMAGE -->
+        <div class="slide" id="slide-4" style="background-color: var(--c-khaki);">
+            <h2 style="margin-bottom: 0;">Media <span class="highlight" style="background-color: var(--c-magenta); color: white;">& Layout</span></h2>
+            <p>Penggunaan warna tanah (khaki, rust) untuk memberikan kesan retro analog.</p>
+            <div class="grid-2" style="height: 60%; margin-top: 2rem;">
+                <div class="img-placeholder">
+                    [Area Gambar]
+                </div>
+                <div>
+                    <h3>Fleksibilitas Grid</h3>
+                    <p>Sistem ini dirancang untuk menampung gambar dan teks dengan rapi menggunakan border tebal yang konsisten sebagai pemisah antar elemen.</p>
+                    <ul style="list-style-type: square; margin-left: 1.5rem; font-size: 1.2rem; font-weight: 500;">
+                        <li style="margin-bottom: 1rem;">Sudut tajam (0px border-radius)</li>
+                        <li style="margin-bottom: 1rem;">Solid drop-shadow</li>
+                        <li style="margin-bottom: 1rem;">Warna cerah sebagai pointer</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: CARDS & COMPONENTS -->
+        <div class="slide" id="slide-5">
+            <span class="badge" style="background-color: var(--c-vivid-yellow);">Komponen</span>
+            <h2>Data Showcase</h2>
+            <div class="grid-3" style="margin-top: 3rem;">
+                <div class="card">
+                    <h1 style="font-size: 3rem; color: var(--c-purple);">85%</h1>
+                    <h3>Konversi Visual</h3>
+                    <p>Warna kontras tinggi memandu mata pengguna ke area yang tepat.</p>
+                </div>
+                <div class="card" style="transform: translateY(-20px); border-color: var(--c-hot-pink);">
+                    <h1 style="font-size: 3rem; color: var(--c-hot-pink);">14</h1>
+                    <h3>Warna Palet</h3>
+                    <p>Semua warna dikategorikan ulang tanpa mengurangi keindahannya.</p>
+                </div>
+                <div class="card">
+                    <h1 style="font-size: 3rem; color: var(--c-olive);">10x</h1>
+                    <h3>Lebih Menarik</h3>
+                    <p>Menghindari desain membosankan dengan pendekatan brutalism yang berani.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: END -->
+        <div class="slide" id="slide-6" style="justify-content: center; align-items: center; text-align: center; background-color: var(--c-purple); color: var(--c-off-white);">
+            <h1 class="text-stroke" style="-webkit-text-stroke: 2px var(--c-off-white); color: var(--c-purple);">Terima Kasih</h1>
+            <h2 style="color: var(--c-vivid-yellow); margin-top: 1rem;">Sistem Desain Siap Digunakan!</h2>
+            <p style="max-width: 500px; margin: 2rem auto;">Kamu bisa mengedit teks, menambah slide baru, atau mengubah variabel CSS untuk melakukan kustomisasi lebih lanjut.</p>
+            <button class="btn" style="background-color: var(--c-cyan); color: var(--c-black);" onclick="goToSlide(0)">Mulai Ulang</button>
+        </div>
+
+        <!-- NAV CONTROLS -->
+        <div class="controls">
+            <button class="nav-btn" onclick="prevSlide()" aria-label="Previous Slide">←</button>
+            <button class="nav-btn" onclick="nextSlide()" aria-label="Next Slide">→</button>
+        </div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const progressBar = document.getElementById('progress');
+        let currentSlide = 0;
+
+        function updateSlides() {
+            // Update active class
+            slides.forEach((slide, index) => {
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            // Update progress bar
+            const progress = ((currentSlide) / (slides.length - 1)) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlides();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlides();
+            }
+        }
+
+        function goToSlide(index) {
+            if (index >= 0 && index < slides.length) {
+                currentSlide = index;
+                updateSlides();
+            }
+        }
+
+        // Keyboard Navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'Space') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        // Initialize progress bar
+        updateSlides();
+    </script>
+</body>
+</html>
