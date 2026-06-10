@@ -177,7 +177,7 @@ body::before{
 .slide{
   width:100vw; min-height:100vh; height:100vh;
   position:relative; display:flex; flex-direction:column;
-  justify-content:center; overflow:hidden;
+  justify-content:center; align-items:center; overflow:hidden;
   scroll-snap-align:start;
   page-break-after:always;
 }
@@ -186,7 +186,7 @@ body::before{
 /* ===== TACTICAL LABEL ===== */
 .tactical-label{
   font-family: var(--font-mono);
-  font-size:.8rem;
+  font-size:.95rem;
   font-weight:400;
   letter-spacing:4px;
   text-transform:uppercase;
@@ -240,8 +240,8 @@ body::before{
   line-height:.9;
   letter-spacing:.02em;
 }
-.big-hero{    font-size: clamp(3.5rem, 9vw, 8rem); }
-.big-section{ font-size: clamp(2.5rem, 6vw, 5rem); }
+.big-hero{    font-size: clamp(4rem, 10vw, 9rem); }
+.big-section{ font-size: clamp(3rem, 7vw, 5.5rem); }
 
 .hl-red{  color: var(--val-red);  }
 .hl-teal{ color: var(--val-teal); }
@@ -263,15 +263,15 @@ body::before{
 
 .sub{
   font-family: var(--font-body);
-  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
   line-height:1.7;
-  max-width:650px;
+  max-width:900px;
   color: var(--val-gray-100);
 }
 
 /* ===== TACTICAL CARDS ===== */
 .card-tac{
-  padding: var(--space-lg);
+  padding: var(--space-xl) var(--space-lg);
   position:relative;
   transition: transform .3s var(--ease-tactical), box-shadow .3s ease;
   will-change:transform;
@@ -321,19 +321,19 @@ body::before{
 .card-tac h3{
   font-family: var(--font-display);
   font-weight:400;
-  font-size:1.25rem;
+  font-size:1.5rem;
   text-transform:uppercase;
   letter-spacing:.5px;
-  margin-bottom:10px;
+  margin-bottom:12px;
 }
 .card-tac p, .card-tac li{
   font-family: var(--font-body);
-  font-size:1.05rem;
-  line-height:1.7;
+  font-size:1.15rem;
+  line-height:1.75;
   color: var(--val-gray-100);
 }
 .card-tac ul{ list-style:none; padding:0; }
-.card-tac ul li{ padding:7px 0 7px 24px; position:relative; font-size:1.05rem; }
+.card-tac ul li{ padding:8px 0 8px 28px; position:relative; font-size:1.15rem; }
 .card-tac ul li::before{
   content:'//';
   position:absolute; left:0;
@@ -344,30 +344,30 @@ body::before{
 }
 
 /* ===== LAYOUTS ===== */
-.split{ display:grid; grid-template-columns:1fr 1fr; gap:var(--space-xl); align-items:center; }
-.pad-lg{ padding: 80px 100px; }
-.g2{ display:grid; grid-template-columns:1fr 1fr; gap:var(--space-md); }
-.g3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:var(--space-md); }
+.split{ display:grid; grid-template-columns:1fr 1fr; gap:var(--space-lg); align-items:stretch; }
+.pad-lg{ padding: 60px 60px; }
+.g2{ display:grid; grid-template-columns:1fr 1fr; gap:var(--space-md); align-items:stretch; }
+.g3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:var(--space-md); align-items:stretch; }
 
 /* ===== TABLE ===== */
 .tbl{
   width:100%; border-collapse:collapse;
-  font-size:1rem; margin-top:20px;
+  font-size:1.1rem; margin-top:24px;
   overflow:hidden;
 }
 .tbl thead th{
-  padding: 14px 18px;
+  padding: 18px 24px;
   text-align:left;
   font-family: var(--font-mono);
   font-weight:400;
   text-transform:uppercase;
   letter-spacing:2px;
-  font-size:.7rem;
+  font-size:.85rem;
 }
 .tbl tbody td{
-  padding: 14px 18px;
+  padding: 18px 24px;
   line-height:1.7;
-  font-size:1rem;
+  font-size:1.1rem;
 }
 .tbl-dark thead th{
   background: rgba(255,70,85,.1);
@@ -401,25 +401,29 @@ body::before{
 
 /* ===== FOOTER ===== */
 .sf{
-  position:absolute; bottom:20px; left:80px; right:80px;
+  position:absolute; bottom:16px; left:60px; right:60px;
   display:flex; justify-content:space-between; align-items:center;
-  font-size:.6rem; letter-spacing:3px; text-transform:uppercase;
+  font-size:.7rem; letter-spacing:3px; text-transform:uppercase;
   font-family: var(--font-mono); font-weight:400;
   z-index:4; opacity:.35;
 }
 
 /* ===== DISCUSSION ITEMS ===== */
 .disc-item{
-  display:flex; gap:24px; align-items:flex-start;
+  display:flex; gap:28px; align-items:flex-start;
   margin-bottom: var(--space-sm);
-  padding: var(--space-lg) var(--space-lg);
+  padding: var(--space-lg) var(--space-xl);
+}
+.disc-item p{
+  font-size:1.15rem !important;
+  line-height:1.75 !important;
 }
 .disc-num{
   font-family: var(--font-display);
   font-weight:400;
-  font-size:3rem;
+  font-size:3.5rem;
   line-height:1;
-  min-width:50px;
+  min-width:60px;
 }
 
 /* ===== REVEAL ===== */
