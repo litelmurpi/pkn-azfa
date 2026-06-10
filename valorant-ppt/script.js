@@ -6,7 +6,7 @@
 (function () {
   'use strict';
 
-  const TOTAL = 9;
+  const TOTAL = 8;
   let current = 1;
   let isTransitioning = false;
   let touchStartY = 0;
@@ -21,7 +21,6 @@
     6: { bg: '#ECE8E1' },  // warm ivory
     7: { bg: '#0F1923' },  // dark
     8: { bg: '#0F1923' },  // dark
-    9: { bg: '#0F1923' },  // dark
   };
 
   // Cursor glow color per slide
@@ -34,7 +33,6 @@
     6: 'rgba(15,25,35,.06)',
     7: 'rgba(255,70,85,.08)',
     8: 'rgba(255,70,85,.08)',
-    9: 'rgba(0,212,170,.06)',
   };
 
   // DOM refs
