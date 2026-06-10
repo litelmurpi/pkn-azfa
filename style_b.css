@@ -1,14 +1,29 @@
 :root {
   /* Colors for Case B - Institutional & Editorial Vibe */
-  --color-gold: #e2b842;        /* Highlight accent, represents prestige/scholarship */
-  --color-midnight: #0a1128;    /* Main dark backdrop, representing passport/institutions */
-  --color-navy: #1b263b;        /* Secondary dark backdrop, representing formal bodies */
-  --color-offwhite: #f4f5f6;    /* Contrast light background, editorial feel */
+  --color-gold: #e2b842;
+  /* Highlight accent, represents prestige/scholarship */
+  --color-midnight: #080c18;
+  /* Main dark backdrop, representing passport/institutions */
+  --color-navy: #131d35;
+  /* Secondary dark backdrop, representing formal bodies */
+  --color-offwhite: #f5f6f8;
+  /* Contrast light background, editorial feel */
   --color-pure-black: #000000;
-  
-  --color-crimson: #c53030;     /* Controversy/warning accent */
-  --color-sage: #5c6f68;
-  --color-slate: #4a5568;
+
+  /* Bright, high-contrast accents for dark backgrounds */
+  --color-crimson: #ff6b8b;
+  /* High-contrast pink/coral red */
+  --color-sage: #5cc098;
+  /* High-contrast mint/sage */
+  --color-slate: #718096;
+
+  /* Map old variables to Case B colors so inline HTML styles work flawlessly */
+  --color-lime: var(--color-gold);
+  --color-indigo: var(--color-navy);
+  --color-dark: var(--color-midnight);
+  --color-pink: var(--color-crimson);
+  --color-mint: var(--color-sage);
+  --color-coral: var(--color-crimson);
 
   /* Fonts - Editorial Serif paired with clean sans-serif */
   --font-display: 'Playfair Display', Georgia, serif;
@@ -244,11 +259,25 @@ section {
 }
 
 /* Highlight accent markers */
-.hl-lime { color: var(--color-gold); }
-.hl-indigo { color: var(--color-navy); }
-.hl-pink { color: var(--color-crimson); }
-.hl-mint { color: var(--color-sage); }
-.hl-coral { color: var(--color-crimson); }
+.hl-lime {
+  color: var(--color-gold);
+}
+
+.hl-indigo {
+  color: var(--color-navy);
+}
+
+.hl-pink {
+  color: var(--color-crimson);
+}
+
+.hl-mint {
+  color: var(--color-sage);
+}
+
+.hl-coral {
+  color: var(--color-crimson);
+}
 
 /* Playful Inline Vector Icons */
 .glyph {
@@ -258,17 +287,37 @@ section {
   vertical-align: middle;
   width: clamp(32px, 5vw, 55px);
   height: clamp(32px, 5vw, 55px);
-  border-radius: 8px; /* Square Editorial style instead of circle */
+  border-radius: 8px;
+  /* Square Editorial style instead of circle */
   margin: 0 8px;
   transform: translateY(-5px);
   padding: 6px;
 }
 
-.glyph.pink { background-color: var(--color-crimson); fill: var(--color-offwhite); }
-.glyph.mint { background-color: var(--color-sage); fill: var(--color-offwhite); }
-.glyph.coral { background-color: var(--color-crimson); fill: var(--color-offwhite); }
-.glyph.lime { background-color: var(--color-gold); fill: var(--color-midnight); }
-.glyph.indigo { background-color: var(--color-navy); fill: var(--color-offwhite); }
+.glyph.pink {
+  background-color: var(--color-crimson);
+  fill: var(--color-offwhite);
+}
+
+.glyph.mint {
+  background-color: var(--color-sage);
+  fill: var(--color-midnight);
+}
+
+.glyph.coral {
+  background-color: var(--color-crimson);
+  fill: var(--color-offwhite);
+}
+
+.glyph.lime {
+  background-color: var(--color-gold);
+  fill: var(--color-midnight);
+}
+
+.glyph.indigo {
+  background-color: var(--color-navy);
+  fill: var(--color-offwhite);
+}
 
 /* Rotating badge on landing */
 .rotating-badge {
@@ -291,8 +340,13 @@ section {
 }
 
 @keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Card components for slide content - Editorial style */
@@ -301,8 +355,24 @@ section {
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 12px;
   padding: 3rem;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s;
+}
+
+.theme-lime .glass-card {
+  /* On light gold background, card is clean white with black text for readability */
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: var(--color-pure-black);
+}
+
+.theme-lime .glass-card .body-text {
+  color: #333333 !important;
+}
+
+.theme-lime .glass-card .hl-lime {
+  color: #c0392b;
+  /* Contrast red/dark for highlight on light card */
 }
 
 .glass-card:hover {
@@ -359,6 +429,25 @@ section {
   transition: all 0.3s ease;
 }
 
+/* Slide 4 (Tiga Pilar) is theme-lime (gold background).
+   Let's make sure cards on this gold background have maximum readability. */
+.theme-lime .feature-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: var(--color-pure-black);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.theme-lime .feature-card .feature-icon {
+  fill: var(--color-navy);
+  /* Dark icon on white card */
+}
+
+.theme-lime .feature-card:hover {
+  background-color: #f8fafc;
+  border-color: var(--color-navy);
+}
+
 .feature-card:hover {
   background-color: rgba(255, 255, 255, 0.05);
   border-color: var(--color-gold);
@@ -379,7 +468,7 @@ section {
 
 /* FAQ / QA component for Slide 6 */
 .qa-box {
-  background-color: #0b1120;
+  background-color: #0d1527;
   color: var(--color-offwhite);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 16px;
@@ -389,7 +478,7 @@ section {
   gap: 2.5rem;
   max-width: 950px;
   margin: 0 auto;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
 }
 
 .question {
@@ -402,21 +491,21 @@ section {
   padding-left: 1.5rem;
 }
 
-/* Repeating Outline Border for Sections - Serif Style */
 .repeating-outline {
   position: absolute;
-  top: 50%;
-  left: 2rem;
-  transform: translateY(-50%) rotate(-90deg);
+  top: calc(var(--header-height) + 2rem);
+  left: 8%;
+  transform: none;
   font-family: var(--font-display);
-  font-size: 4rem;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.03);
+  font-size: 1.5rem;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px currentColor;
+  opacity: 0.5;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.2em;
   white-space: nowrap;
   pointer-events: none;
-  z-index: 1;
+  z-index: 10;
 }
 
 /* Color theme mappings for JS triggers - Case B Colors */
@@ -516,11 +605,13 @@ section.active .timeline-card:nth-child(1) {
   transform: translateY(0);
   transition-delay: 0.3s;
 }
+
 section.active .timeline-card:nth-child(2) {
   opacity: 1;
   transform: translateY(0);
   transition-delay: 0.45s;
 }
+
 section.active .timeline-card:nth-child(3) {
   opacity: 1;
   transform: translateY(0);
@@ -533,16 +624,19 @@ section.active .feature-card:nth-child(1) {
   transform: translateY(0);
   transition-delay: 0.25s;
 }
+
 section.active .feature-card:nth-child(2) {
   opacity: 1;
   transform: translateY(0);
   transition-delay: 0.35s;
 }
+
 section.active .feature-card:nth-child(3) {
   opacity: 1;
   transform: translateY(0);
   transition-delay: 0.45s;
 }
+
 section.active .feature-card:nth-child(4) {
   opacity: 1;
   transform: translateY(0);
@@ -567,13 +661,33 @@ section.active .rotating-badge {
   transform: translateY(0);
 }
 
-.sidebar.active .sidebar-link:nth-child(1) { transition-delay: 0.1s; }
-.sidebar.active .sidebar-link:nth-child(2) { transition-delay: 0.18s; }
-.sidebar.active .sidebar-link:nth-child(3) { transition-delay: 0.26s; }
-.sidebar.active .sidebar-link:nth-child(4) { transition-delay: 0.34s; }
-.sidebar.active .sidebar-link:nth-child(5) { transition-delay: 0.42s; }
-.sidebar.active .sidebar-link:nth-child(6) { transition-delay: 0.5s; }
-.sidebar.active .sidebar-link:nth-child(7) { transition-delay: 0.58s; }
+.sidebar.active .sidebar-link:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.sidebar.active .sidebar-link:nth-child(2) {
+  transition-delay: 0.18s;
+}
+
+.sidebar.active .sidebar-link:nth-child(3) {
+  transition-delay: 0.26s;
+}
+
+.sidebar.active .sidebar-link:nth-child(4) {
+  transition-delay: 0.34s;
+}
+
+.sidebar.active .sidebar-link:nth-child(5) {
+  transition-delay: 0.42s;
+}
+
+.sidebar.active .sidebar-link:nth-child(6) {
+  transition-delay: 0.5s;
+}
+
+.sidebar.active .sidebar-link:nth-child(7) {
+  transition-delay: 0.58s;
+}
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
@@ -581,19 +695,24 @@ section.active .rotating-badge {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+
   .timeline-container {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
+
   .feature-grid {
     grid-template-columns: 1fr;
   }
+
   header {
     padding: 0 1.5rem;
   }
+
   .qa-box {
     padding: 2.5rem;
   }
+
   .dot-nav {
     right: 1.25rem;
   }
@@ -603,6 +722,7 @@ section.active .rotating-badge {
   .rotating-badge {
     display: none;
   }
+
   .dot-nav {
     display: none;
   }
